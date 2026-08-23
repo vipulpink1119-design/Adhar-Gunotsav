@@ -12,8 +12,6 @@
   <!-- ગુજરાતી ગુગલ ફોન્ટ્સ -->
   <link href="https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@400;700&family=Hind+Vadodara:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Serif+Gujarati:wght@400;700&family=Rasa:wght@400;700&display=swap" rel="stylesheet">
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  
   <style>
     :root { 
       --primary-dark: #0f3a5d; --primary: #1a568c; --accent: #d97706; 
@@ -149,22 +147,9 @@
       tr, td, th { page-break-inside: avoid; break-inside: avoid; page-break-after: auto; }
       .photo-display-box { resize: none; border: none; }
     }
-    /* Modal for PDF Progress */
-    #pdfProgressModal {
-      display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      background: white; padding: 25px 35px; border-radius: 8px; box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-      z-index: 9999; text-align: center; font-family: inherit; width: 320px;
-    }
-    #pdfProgressModal h3 { margin-top: 0; color: var(--primary-dark); font-weight: 800; }
   </style>
 </head>
 <body>
-<!-- PDF Progress Modal (Point 5) -->
-<div id="pdfProgressModal">
-  <h3>PDF ડાઉનલોડ ચાલુ છે...</h3>
-  <p id="pdfProgressText" style="font-weight: 700; font-size: 16px; color: #334155; margin-bottom: 20px;">પેજ: 1 / 10</p>
-  <button class="btn-action btn-danger" onclick="cancelBulkPDF()">✕ રદ કરો (Cancel)</button>
-</div>
 <div class="app-container">
   
   <div class="sidebar no-print">
@@ -219,9 +204,7 @@
       <span class="save-indicator" id="saveStatus">✓ ઓટો સેવ...</span>
       <button class="btn-toolbar btn-color-toggle" onclick="toggleColorMode()">🎨 રંગીન અક્ષરો કરો</button>
       
-      <!-- PDF ડાઉનલોડ Single (નવું બટન) -->
-      <button class="btn-toolbar" style="background:#059669;" onclick="generateSinglePDF()">📥 PDF ડાઉનલોડ (Single)</button>
-      <button class="btn-toolbar" style="background:#8b5cf6;" onclick="generateBulkPDF()">📥 PDF ડાઉનલોડ (Bulk)</button>
+      <!-- પ્રિન્ટ બટન -->
       <button class="btn-toolbar" style="background:#2563eb;" onclick="validateAndPrint()">🖨️ પ્રિન્ટ કાઢો</button>
     </div>
     
@@ -321,7 +304,7 @@
     { id: 5, title: "કર્મચારીઓને પગાર ચૂકવણી, Payroll અને ઓડિટની વિગત" },
     { id: 6, title: "કર્મચારીઓના સ્થાયીકરણ માટેના પ્રયાસોની વિગત, નવા નિમાયેલ અને શાળા છોડીને ગયેલ કર્મચારીઓની સંખ્યા" },
     { id: 7, title: "કર્મચારીઓને આપેલ પ્રોત્સાહન - પુરસ્કાર સંબંધિત વિગત" },
-    { id: 8, title: "કર્મચારીઓની ફરિયાદોની નોંધ અને નિકાલ સંબંધિત গঠন સંબંધિત વિગત" },
+    { id: 8, title: "કર્મચારીઓની ફરિયાદોની નોંધ અને નિકાલ સંબંધિત વિગત" },
     { id: 9, title: "શાળાની વિકાસ યોજનાનો દસ્તાવેજ" },
     { id: 10, title: "શાળા વિકાસ યોજનાના અમલીકરણ, સમીક્ષા અને શૈક્ષણિક બાબતોમાં થયેલ ગુણાત્મક ફેરફારની વિગત" },
     { id: 11, title: "SMC/ વાલીમંડળની રચના અને પુન:રચના પ્રક્રિયા સંબંધિત અહેવાલ/ દસ્તાવેજ અને સભ્યોની વિગત" },
@@ -539,31 +522,14 @@ window.addCustomHeading = function(btn) {
   window.toggleSidebar = function() {
       document.querySelector('.sidebar').classList.toggle('hidden');
   };
-    window.generateSinglePDF = async function() {
-      alert("વર્તમાન પેજની PDF ડાઉનલોડ શરૂ થશે. કૃપા કરીને રાહ જુઓ...");
-      
-      // ફોન્ટ સંપૂર્ણ લોડ થવાની રાહ જુઓ જેથી લખાણ વિખેરાય નહીં
-      await document.fonts.ready; 
-      
-      const element = document.getElementById('printableSheet');
-      
-      let words = currentItem.title.split(' ').slice(0, 3).join('_');
-      words = words.replace(/[\/\:*?"<>|]/g, '');
-      const filename = `PART${currentPart}_${words}_Single.pdf`;
-      const opt = {
-        margin:       [5, 0, 5, 0],
-        filename:     filename,
-        image:        { type: 'jpeg', quality: 1.0 },
-        html2canvas:  { 
-            scale: 2, 
-            useCORS: true, 
-            windowWidth: 1024,
-            letterRendering: false // ગુજરાતી જોડાક્ષરો તૂટતા અટકાવવા
-        },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-      await html2pdf().set(opt).from(element).save();
-      alert("PDF ડાઉનલોડ પૂર્ણ થઈ ગઈ છે!");
+  window.alignTableText = function(btn, alignment) {
+    const tableContainer = btn.closest('.table-container');
+    if (tableContainer) {
+        tableContainer.querySelectorAll('tbody .tbl-input').forEach(inp => {
+            inp.style.textAlign = alignment;
+        });
+        triggerAutoSave();
+    }
   };
   // Point 3: Insert Table above the Pink Strip
   window.addNewTable = function() {
@@ -575,6 +541,9 @@ window.addCustomHeading = function(btn) {
           <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="changeTableFont(1)">A+</button>
           <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="changeTableFont(-1)">A-</button>
           <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="toggleTableBold()"><b>B</b></button>
+          <span style="font-size:11px; font-weight:bold; color:#475569; margin-left:8px;">એલાઈનમેન્ટ:</span>
+          <button class="btn-action" style="background:#334155; padding:4px 8px;" onclick="alignTableText(this, 'left')">Left</button>
+          <button class="btn-action" style="background:#334155; padding:4px 8px;" onclick="alignTableText(this, 'center')">Center</button>
         </div>
         <button class="btn-action" style="background:#ef4444;" onclick="deleteTable(this)">🗑️ ટેબલ ડિલીટ</button>
         <button class="btn-action btn-danger" onclick="deleteLastColumn(this)">- કોલમ</button>
@@ -584,7 +553,7 @@ window.addCustomHeading = function(btn) {
       </div>
       <table class="official-table">
         <thead><tr><th><div class="tbl-input" contenteditable="true">નવું ટાઇટલ</div></th></tr></thead>
-        <tbody><tr><td><div class="tbl-input" contenteditable="true">માહિતી...</div></td></tr></tbody>
+        <tbody><tr><td><div class="tbl-input" contenteditable="true" style="text-align:center;">માહિતી...</div></td></tr></tbody>
       </table>
     </div>`;
     
@@ -609,7 +578,7 @@ window.addCustomHeading = function(btn) {
         if(cellIndex === 0 && !isNaN(parseInt(cellText))) {
            trs += `<td>${cellText}</td>`;
         } else {
-           trs += `<td><div class="tbl-input" contenteditable="true">${cellText}</div></td>`;
+           trs += `<td><div class="tbl-input" contenteditable="true" style="text-align:left;">${cellText}</div></td>`;
         }
       });
       trs += "</tr>";
@@ -635,6 +604,9 @@ window.addCustomHeading = function(btn) {
       <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="changeTableFont(1)">A+</button>
       <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="changeTableFont(-1)">A-</button>
       <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="toggleTableBold()"><b>B</b></button>
+      <span style="font-size:11px; font-weight:bold; color:#475569; margin-left:8px;">એલાઈનમેન્ટ:</span>
+      <button class="btn-action" style="background:#334155; padding:4px 8px;" onclick="alignTableText(this, 'left')">Left</button>
+      <button class="btn-action" style="background:#334155; padding:4px 8px;" onclick="alignTableText(this, 'center')">Center</button>
     </div>
     <button class="btn-action" style="background:#ef4444;" onclick="deleteTable(this)">🗑️ ટેબલ ડિલીટ</button>
     <button class="btn-action btn-danger" onclick="deleteLastColumn(this)">- કોલમ</button>
@@ -926,62 +898,6 @@ window.addCustomHeading = function(btn) {
     }
     window.print();
   }
-  // Point 5: Bulk PDF Cancel Mechanism
-  let isPdfCancelled = false;
-  window.cancelBulkPDF = function() {
-      isPdfCancelled = true;
-  };
-   window.generateBulkPDF = async function() {
-      const startStr = prompt("કેટલા નંબરથી PDF ડાઉનલોડ કરવી છે? (દા.ત. 1)", "1");
-      if(!startStr) return;
-      const endStr = prompt("કેટલા નંબર સુધી PDF ડાઉનલોડ કરવી છે? (દા.ત. 38)", "38");
-      if(!endStr) return;
-      const start = parseInt(startStr);
-      const end = parseInt(endStr);
-      const db = currentPart === 1 ? dbPart1 : dbPart2;
-      if(isNaN(start) || isNaN(end) || start > end) {
-          alert("કૃપા કરીને સાચો નંબર દાખલ કરો."); return;
-      }
-      isPdfCancelled = false;
-      document.getElementById('pdfProgressModal').style.display = 'block';
-      const originalItem = currentItem;
-      // ફોન્ટ સંપૂર્ણ લોડ થવાની રાહ જુઓ
-      await document.fonts.ready;
-      for(let i = start; i <= end; i++) {
-          if(isPdfCancelled) {
-              alert("PDF ડાઉનલોડ પ્રક્રિયા રદ કરવામાં આવી છે.");
-              break;
-          }
-          document.getElementById('pdfProgressText').innerText = `પેજ: ${i} / ${end}`;
-          const item = db.find(d => d.id === i);
-          if(!item) continue;
-          await loadContent(item);
-          await new Promise(r => setTimeout(r, 600)); 
-          const element = document.getElementById('printableSheet');
-          
-          let words = item.title.split(' ').slice(0, 3).join('_');
-          words = words.replace(/[\/\\:*?"<>|]/g, '');
-          const filename = `PART${currentPart}_${words}_${item.id}.pdf`;
-          const opt = {
-            margin:       [5, 0, 5, 0],
-            filename:     filename,
-            image:        { type: 'jpeg', quality: 1.0 },
-            html2canvas:  { 
-                scale: 2, 
-                useCORS: true, 
-                windowWidth: 1024,
-                letterRendering: false // ગુજરાતી જોડાક્ષરો તૂટતા અટકાવવા
-            },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-          };
-          await html2pdf().set(opt).from(element).save();
-      }
-      document.getElementById('pdfProgressModal').style.display = 'none';
-      await loadContent(originalItem);
-      if(!isPdfCancelled) {
-         alert("તમામ પસંદ કરેલ PDF ડાઉનલોડ પૂર્ણ થઈ ગઈ છે!");
-      }
-  };
   // Point 4: Date Format Logic (dd/mm/yyyy)
   function updateProfileInfo() {
     document.getElementById('lblSchoolName').innerText = document.getElementById('schoolNameInput').value;
