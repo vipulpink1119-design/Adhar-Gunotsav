@@ -1,14 +1,15 @@
-
-
 <!DOCTYPE html>
 <html lang="gu">
 <head>
   <meta charset="UTF-8">
-  <title>ગુણોત્સવ ૨૦૨૬ - આધાર પુરાવા</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1a73e8">
+  <title>ગુણોત્સવ ૨૦૨૬ - આધાર પુરાવા મેનેજર</title>
   
-  <!-- ગુજરાતી ગુગલ ફોન્ટ્સ (Point 7) -->
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f3a5d">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  
+  <!-- ગુજરાતી ગુગલ ફોન્ટ્સ -->
   <link href="https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@400;700&family=Hind+Vadodara:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Serif+Gujarati:wght@400;700&family=Rasa:wght@400;700&display=swap" rel="stylesheet">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -27,15 +28,12 @@
     .colorful-mode .doc-main-title { color: #dc2626 !important; }
     .colorful-mode .info-profile-box { background: #fdf4ff !important; border-color: #d946ef !important; }
     .colorful-mode .tbl-input { color: #065f46; font-weight: var(--tbl-fw); }
-
     * { box-sizing: border-box; }
     body { margin: 0; padding: 0; font-family: 'Noto Sans Gujarati', sans-serif; background: var(--bg-slate); color: #1e293b; font-size: 14.5px; }
     .app-container { display: flex; height: 100vh; overflow: hidden; }
-
     /* Sidebar Layout */
     .sidebar { width: 450px; background: #ffffff; border-right: 2px solid var(--border-color); display: flex; flex-direction: column; z-index: 200; transition: width 0.3s, padding 0.3s; overflow-x: hidden; }
     .sidebar.hidden { width: 0; border-right: none; }
-
     .sidebar-header { padding: 16px; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #ffffff; text-align: center;}
     .sidebar-header h2 { margin: 0; font-size: 17px; font-weight: 800; }
     .sidebar-header p { margin: 4px 0 0 0; font-size: 12px; font-weight: 600; opacity: 0.9; }
@@ -45,24 +43,20 @@
     .tab:hover { background: #e2e8f0; }
     .tab#tab1.active { color: #15803d; border-bottom-color: #15803d; background: #f0fdf4; }
     .tab#tab2.active { color: #b45309; border-bottom-color: #b45309; background: #fffbeb; }
-
     .school-details-dropdown summary { padding: 12px 16px; font-weight: 800; cursor: pointer; list-style: none; background: #e2e8f0; border-bottom: 2px solid var(--border-color); }
     .sidebar-inputs { padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; max-height: 300px; overflow-y: auto; background: #fafafa;}
     .input-grp { display: flex; flex-direction: column; gap: 3px; }
     .input-grp.full-col { grid-column: 1 / -1; }
     .input-grp label { font-size: 11.5px; font-weight: 700; color: #334155; }
     .input-grp input, .input-grp select { padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; font-size: 13px; font-weight: 700; }
-
     .search-box { padding: 10px 14px; background: #f8fafc; border-bottom: 2px solid var(--border-color); }
     .search-box input { width: 100%; padding: 8px 12px; border: 1.5px solid var(--border-color); border-radius: 6px; font-family: inherit; font-weight: 600;}
-
-    /* List (Point 6 - Line spacing) */
+    /* List */
     .evidence-list { flex: 1; overflow-y: auto; list-style: none; padding: 0; margin: 0; }
     .evidence-item { padding: 14px 16px; border-bottom: 1px solid #e2e8f0; cursor: pointer; font-size: 15.5px; font-weight: 700; display: flex; align-items: flex-start; gap: 10px; line-height: 1.35; color: #334155;}
     .evidence-item:hover { background: #f1f5f9; }
     .evidence-item.active { background-color: #e0f2fe; border-left: 6px solid #2563eb; color: #1e3a8a; }
     .badge-sr { background: #1e293b; color: white; padding: 3px 8px; border-radius: 4px; font-size: 13px; font-weight: 800; white-space: nowrap; margin-top: 2px; }
-
     /* Main Doc Area */
     .main-content { flex: 1; display: flex; flex-direction: column; background: #94a3b8; overflow-y: auto; }
     .top-toolbar { padding: 10px 18px; background: #ffffff; border-bottom: 2px solid var(--border-color); display: flex; justify-content: flex-end; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); gap: 12px;}
@@ -80,15 +74,12 @@
     .info-profile-box { border: 1.5px solid var(--c-td-border); border-radius: 5px; padding: 10px 14px; margin-bottom: 14px; background: #fafafa; transition: 0.3s;}
     .info-profile-title { font-weight: var(--info-fw); font-size: calc(var(--info-fs) + 1.5px); margin-bottom: 6px; border-bottom: 1px dashed var(--c-td-border); padding-bottom: 3px; }
     .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 16px; font-size: var(--info-fs); color: var(--c-text); font-weight: var(--info-fw); transition: font-size 0.2s;}
-
     .section-head { font-weight: 800; font-size: 15px; color: var(--primary-dark); margin: 14px 0 6px 0; border-bottom: 1.5px solid var(--c-td-border); padding-bottom: 3px; }
     .custom-heading-wrapper { position: relative; margin-top: 15px; page-break-inside: avoid; break-inside: avoid; border: 1px dashed #cbd5e1; padding: 5px; border-radius: 6px; background:#f8fafc;}
     .custom-heading-wrapper .btn-remove-slot { top: -10px !important; right: -10px !important; }
-
     /* Point 6: Line Spacing */
     .desc-textarea { width: 100%; min-height: 50px; padding: 8px; font-size: 14px; font-weight: 700; color: var(--c-text); line-height: 1.45; border: 1px dashed #94a3b8; border-radius: 4px; background: #f8fafc; font-family: inherit; outline: none; transition: 0.3s; word-break: break-word; white-space: pre-wrap;}
     .desc-textarea:focus { border-color: var(--primary); background: #ffffff; }
-
     .table-container { margin-bottom: 15px; overflow-x: auto; page-break-inside: auto; }
     .official-table { width: 100%; border-collapse: collapse; margin: 5px 0; font-size: var(--tbl-fs); table-layout: auto; transition: font-size 0.2s; page-break-inside: auto; break-inside: auto;}
     .official-table th { background: var(--c-th-bg); color: var(--c-th-text); padding: 5px; border: 1.5px solid var(--c-td-border); transition: 0.3s;}
@@ -98,7 +89,6 @@
     .tbl-input:hover { border-color: #cbd5e1; background: #f8fafc;}
     .official-table th .tbl-input { text-align: center; }
     .tbl-input:focus { border: 1px solid var(--primary); background: #ffffff; }
-
     .tbl-controls { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 10px; flex-wrap: wrap;}
     .btn-action { background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; }
     .btn-action:hover { background: #059669; }
@@ -107,7 +97,6 @@
     .btn-primary { background: var(--primary); }
     .btn-primary:hover { background: var(--primary-dark); }
     .btn-add-table { background: #0284c7; margin-bottom: 15px; }
-
     /* Photo Options */
     .photo-slot-grid { display: flex; flex-wrap: wrap; gap: 14px; margin: 14px 0; }
     .photo-slot-card { width: calc(50% - 7px); border: 1.5px solid #94a3b8; border-radius: 6px; padding: 8px; background: #f8fafc; text-align: center; position: relative; page-break-inside: avoid; break-inside: avoid;}
@@ -124,7 +113,6 @@
     
     .btn-slot-upload { background: #059669; color: white; border: none; padding: 6px 14px; border-radius: 4px; font-weight: bold; cursor: pointer; }
     .btn-remove-slot { position: absolute; top: -10px; right: -10px; background: #ef4444; color: white; border: 2px solid white; border-radius: 50%; width: 26px; height: 26px; font-size: 14px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10;}
-
     /* Footer & Signature */
     .doc-official-footer { margin-top: 30px; padding-top: 10px; display: flex; justify-content: space-between; align-items: flex-end; font-weight: 800; page-break-inside: avoid; break-inside: avoid; }
     .sig-wrapper { text-align: center; position: relative;}
@@ -161,7 +149,6 @@
       tr, td, th { page-break-inside: avoid; break-inside: avoid; page-break-after: auto; }
       .photo-display-box { resize: none; border: none; }
     }
-
     /* Modal for PDF Progress */
     #pdfProgressModal {
       display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -171,20 +158,13 @@
     #pdfProgressModal h3 { margin-top: 0; color: var(--primary-dark); font-weight: 800; }
   </style>
 </head>
-<script>
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-}
-</script>
 <body>
-
 <!-- PDF Progress Modal (Point 5) -->
 <div id="pdfProgressModal">
   <h3>PDF ડાઉનલોડ ચાલુ છે...</h3>
   <p id="pdfProgressText" style="font-weight: 700; font-size: 16px; color: #334155; margin-bottom: 20px;">પેજ: 1 / 10</p>
   <button class="btn-action btn-danger" onclick="cancelBulkPDF()">✕ રદ કરો (Cancel)</button>
 </div>
-
 <div class="app-container">
   
   <div class="sidebar no-print">
@@ -197,7 +177,6 @@ if ("serviceWorker" in navigator) {
       <div class="tab active" id="tab1" onclick="setPart(1)">📄 PART 1</div>
       <div class="tab" id="tab2" onclick="setPart(2)">📄 PART 2</div>
     </div>
-
     <details class="school-details-dropdown">
       <summary>શાળાની પ્રોફાઇલ / સહી સેટિંગ્સ</summary>
       <div class="sidebar-inputs">
@@ -220,7 +199,6 @@ if ("serviceWorker" in navigator) {
         
         <div class="input-grp"><label>સ્થળ (Place):</label><input type="text" id="placeInput" value="અંત્રોલી પ્રાથમિક શાળા" oninput="updateProfileInfo()"></div>
         <div class="input-grp"><label>તારીખ (Date):</label><input type="date" id="dateInput" value="2026-06-15" oninput="updateProfileInfo()"></div>
-
         <div class="input-grp full-col" style="background:#e2e8f0; padding:8px; border-radius:5px; margin-top:5px;">
           <label>આચાર્યશ્રીની સહી/સિક્કો (અપલોડ કરો):</label>
           <input type="file" id="sigUploadInput" accept="image/*" onchange="uploadSignature(event)">
@@ -233,7 +211,6 @@ if ("serviceWorker" in navigator) {
     </div>
     <ul class="evidence-list" id="evidenceUl"></ul>
   </div>
-
   <div class="main-content" id="mainContentArea">
     <div class="top-toolbar no-print">
        <!-- હમ્બર્ગ મેનુ બટન -->
@@ -247,7 +224,6 @@ if ("serviceWorker" in navigator) {
       <button class="btn-toolbar" style="background:#8b5cf6;" onclick="generateBulkPDF()">📥 PDF ડાઉનલોડ (Bulk)</button>
       <button class="btn-toolbar" style="background:#2563eb;" onclick="validateAndPrint()">🖨️ પ્રિન્ટ કાઢો</button>
     </div>
-
     
     <div class="paper-preview" id="printableSheet">
       <div class="doc-main-header">
@@ -272,9 +248,7 @@ if ("serviceWorker" in navigator) {
           <div>આચાર્યશ્રી : <strong id="lblPrincipal"></strong></div>
         </div>
       </div>
-
       <div id="docEditableBody"></div>
-
       <div class="doc-official-footer">
         <div style="line-height: 1.8;">
           સ્થળ  : <strong id="lblPlaceFooter">........</strong><br>
@@ -293,7 +267,6 @@ if ("serviceWorker" in navigator) {
     </div>
   </div>
 </div>
-
 <script>
   // IndexedDB System
   const DBSystem = {
@@ -340,7 +313,6 @@ if ("serviceWorker" in navigator) {
       } catch(e) { return localStorage.getItem(key); }
     }
   };
-
   const dbPart1 = [
     { id: 1, title: "શાળાએ ચાલુ શૈક્ષણિક વર્ષમાં આપેલ પ્રવેશની વિગત" },
     { id: 2, title: "શાળાના કુલ શિક્ષકો અને વિદ્યાર્થીઓની સંખ્યા અને પ્રત્યેક વર્ગ દીઠ વિદ્યાર્થીઓની સંખ્યા" },
@@ -349,7 +321,7 @@ if ("serviceWorker" in navigator) {
     { id: 5, title: "કર્મચારીઓને પગાર ચૂકવણી, Payroll અને ઓડિટની વિગત" },
     { id: 6, title: "કર્મચારીઓના સ્થાયીકરણ માટેના પ્રયાસોની વિગત, નવા નિમાયેલ અને શાળા છોડીને ગયેલ કર્મચારીઓની સંખ્યા" },
     { id: 7, title: "કર્મચારીઓને આપેલ પ્રોત્સાહન - પુરસ્કાર સંબંધિત વિગત" },
-    { id: 8, title: "કર્મચારીઓની ફરિયાદોની નોંધ અને નિકાલ સંબંધિત વિગત" },
+    { id: 8, title: "કર્મચારીઓની ફરિયાદોની નોંધ અને નિકાલ સંબંધિત গঠন સંબંધિત વિગત" },
     { id: 9, title: "શાળાની વિકાસ યોજનાનો દસ્તાવેજ" },
     { id: 10, title: "શાળા વિકાસ યોજનાના અમલીકરણ, સમીક્ષા અને શૈક્ષણિક બાબતોમાં થયેલ ગુણાત્મક ફેરફારની વિગત" },
     { id: 11, title: "SMC/ વાલીમંડળની રચના અને પુન:રચના પ્રક્રિયા સંબંધિત અહેવાલ/ દસ્તાવેજ અને સભ્યોની વિગત" },
@@ -381,7 +353,6 @@ if ("serviceWorker" in navigator) {
     { id: 37, title: "વિદ્યાર્થીઓના વાર્ષિક આરોગ્ય તપાસનો અહેવાલ" },
     { id: 38, title: "દિવ્યાંગતાની જાણ માટે વિદ્યાર્થીઓના સ્ક્રિનિંગ અને કરેલ અનુકાર્યની વિગત" }
   ];
-
   const dbPart2 = [
     { id: 1, title: "શાળાના વાર્ષિક અભ્યાસક્રમ અને પ્રવૃત્તિ આયોજનની નકલ" },
     { id: 2, title: "શાળાના 20% શિક્ષકોની દૈનિક આયોજનપોથીની નોંધના નમૂના" },
@@ -420,7 +391,6 @@ if ("serviceWorker" in navigator) {
     { id: 35, title: "ભોજન પહેલાં અને પછી વિદ્યાર્થીઓ હાથ-મોં સ્વચ્છ કરી શકે તે માટેની સુવિધા અને પ્રયાસો" },
     { id: 36, title: "વિદ્યાર્થીઓની વ્યક્તિગત સ્વચ્છતાની કેળવણી અને આરોગ્યપ્રદ આહાર અંગેની જાગૃતિ" }
   ];
-
   const dummyData = {
     p1_1: { desc: "શાળામાં ચાલુ શૈક્ષણિક વર્ષ દરમિયાન ધોરણ ૧ અને બાલવાટિકામાં સરકારશ્રીના નિયમો મુજબ પારદર્શક રીતે પ્રવેશ પ્રક્રિયા હાથ ધરવામાં આવેલ છે, જેની વિગત નીચે મુજબ છે.", th: ["ધોરણ", "નવા પ્રવેશ (ચાલુ વર્ષે)", "અન્ય શાળામાંથી આવેલ", "કુલ પ્રવેશ"], tr: [["બાલવાટિકા", "૧૦", "૦૦", "૧૦"], ["ધોરણ ૧", "૧૨", "૦૨", "૧૪"]] },
     p1_2: { desc: "શાળામાં મંજૂર મહેકમ સામે કાર્યરત શિક્ષકો અને પ્રત્યેક વર્ગદીઠ કુમાર-કન્યાની હાજર સંખ્યાનું પત્રક નીચે મુજબ નિભાવવામાં આવેલ છે.", th: ["વિગત", "મંજૂર મહેકમ / કુલ સંખ્યા", "હાજર સંખ્યા"], tr: [["કુલ શિક્ષકો", "૦૬", "૦૫"], ["કુલ વિદ્યાર્થીઓ (ધો ૧ થી ૮)", "-", "૧૫૦"]] },
@@ -460,7 +430,6 @@ if ("serviceWorker" in navigator) {
     p1_36:{ desc: "સ્વચ્છ ભારત અભિયાન અંતર્ગત શાળાના ભીના અને સૂકા કચરાના નિકાલ માટે ડસ્ટબીન અને કમ્પોસ્ટ પીટની વ્યવસ્થા છે.", th: ["કચરાનો પ્રકાર", "કચરાપેટીની વ્યવસ્થા", "નિકાલની પદ્ધતિ"], tr: [["ભીનો અને સૂકો કચરો", "લીલી અને ભૂરી ડસ્ટબીન", "કમ્પોસ્ટ પીટ / પંચાયત વાહન"]] },
     p1_37:{ desc: "આરોગ્ય વિભાગની ટીમ દ્વારા વાર્ષિક મેડિકલ કેમ્પમાં તમામ બાળકોની તપાસ કરી જરૂરી માર્ગદર્શન પૂરું પાડવામાં આવેલ છે.", th: ["કેમ્પની તારીખ", "તપાસ કરનાર ડોક્ટર/ટીમ", "વધુ સારવાર માટે સંદર્ભિત (Referred)"], tr: [["૧૦/૦૭/૨૦૨૬", "PHC મેડિકલ ટીમ", "૦૪ વિદ્યાર્થીઓ (આંખની સમસ્યા)"]] },
     p1_38:{ desc: "દિવ્યાંગતાની જાણ માટે વિદ્યાર્થીઓના સ્ક્રિનિંગ અને કરેલ અનુકાર્યની વિગત", th: ["ઓળખાયેલ દિવ્યાંગતાનો પ્રકાર", "વિદ્યાર્થીઓની સંખ્યા", "કરેલ અનુકાર્ય (Follow-up)"], tr: [["અલ્પ દ્રષ્ટિ (Low Vision)", "૦૧", "ચશ્મા માટે સિવિલ હોસ્પિટલ મોકલ્યા"]] },
-
     p2_1: { desc: "શાળાના શૈક્ષણિક વર્ષ માટે પરીક્ષાઓ, રજાઓ અને સાંસ્કૃતિક પ્રવૃત્તિઓ દર્શાવતું વાર્ષિક કેલેન્ડર તૈયાર કરી અમલમાં મુકાયેલ છે.", th: ["માસ", "આયોજિત કાર્યક્રમ / પ્રવૃત્તિ", "અમલીકરણની તારીખ"], tr: [["ઓગસ્ટ", "સ્વાતંત્ર્ય પર્વ અને વકતૃત્વ સ્પર્ધા", "૧૫/૦૮/૨૦૨૬"]] },
     p2_2: { desc: "શિક્ષકો દ્વારા વર્ગખંડમાં જતા પહેલા દૈનિક આયોજનપોથી લખવામાં આવે છે, જેમાં આચાર્યશ્રી નિયમિત સહી અને શેરો કરે છે.", th: ["તારીખ", "શિક્ષકનું નામ / વિષય", "આચાર્યશ્રીની નોંધ / પ્રતિભાવ"], tr: [["૨૦/૦૭/૨૦૨૬", "પ્રજ્ઞેશકુમાર એ. ચૌધરી (વિજ્ઞાન)", "TLM નો સારો ઉપયોગ કર્યો."]] },
     p2_3: { desc: "આચાર્યશ્રી દ્વારા શિક્ષકોના શિક્ષણ કાર્યનું પ્રત્યક્ષ અવલોકન કરી તેમને હકારાત્મક માર્ગદર્શન પૂરું પાડવામાં આવે છે.", th: ["અવલોકન તારીખ", "શિક્ષકનું નામ", "સુધારા માટે સૂચન"], tr: [["૨૨/૦૭/૨૦૨૬", "વિપુલભાઈ એસ. ચૌધરી", "વિદ્યાર્થીઓને વધુ પ્રશ્નો પૂછવા."]] },
@@ -498,21 +467,17 @@ if ("serviceWorker" in navigator) {
     p2_35:{ desc: "મધ્યાહન ભોજન લેતા પહેલા અને પછી તમામ વિદ્યાર્થીઓ ફરજિયાતપણે સાબુથી હાથ ધુએ તેની તકેદારી રાખવામાં આવે છે.", th: ["સુવિધા / પ્રયાસ", "વિગત", "અમલીકરણ"], tr: [["હેન્ડવોશ સ્ટેશન", "સાબુ/લિક્વિડથી હાથ ધોવડાવવા", "દરરોજ ભોજન પહેલાં અને પછી"]] },
     p2_36:{ desc: "બાળકો જંકફૂડ ટાળે અને પૌષ્ટિક આહાર લે તે માટે વર્ગમાં જાગૃતિ અપાય છે તથા નખ-વાળની સાપ્તાહિક ચકાસણી થાય છે.", th: ["ચકાસણીનો મુદ્દો", "જવાબદારી", "આરોગ્યપ્રદ આહાર જાગૃતિ"], tr: [["નખ, સ્વચ્છ ગણવેશ અને વાળ", "વર્ગ શિક્ષક (દર શનિવારે)", "જંકફૂડ ન ખાવા અંગે વર્ગમાં ચર્ચા"]] }
   };
-
   let currentPart = 1;
   let currentItem = dbPart1[0];
   let autoSaveTimer;
-
   let tblFontSize = 14.5;
   let isTblBold = true;
   let infoFontSize = 13.5;
   let isInfoBold = true;
-
   window.changeGlobalFont = function(font) {
       document.body.style.fontFamily = font;
       localStorage.setItem('gunotsav_global_font', font);
   }
-
   function createPhotoSlotHtml(slotKey, labelText, defaultText, isFullWidth) {
     return `
       <div class="photo-slot-card ${isFullWidth ? 'full-width' : ''}" id="card_${slotKey}">
@@ -529,7 +494,6 @@ if ("serviceWorker" in navigator) {
         <button class="btn-slot-upload no-print" onclick="document.getElementById('inp_${slotKey}').click()">📷 ફોટો અપલોડ કરો</button>
       </div>`;
   }
-
   // Point 2: Insert Heading and Input Box together
 window.addCustomHeading = function(btn) {
       const headingHTML = `
@@ -554,7 +518,6 @@ window.addCustomHeading = function(btn) {
       }
       triggerAutoSave();
   }
-
   // નવા ઉમેરવાના ફંક્શન:
   window.changeLocalFont = function(btn, step) {
       const wrapper = btn.closest('.custom-heading-wrapper');
@@ -566,7 +529,6 @@ window.addCustomHeading = function(btn) {
       ta.style.fontSize = (taSize + step) + 'px';
       triggerAutoSave();
   };
-
   window.toggleLocalBold = function(btn) {
       const wrapper = btn.closest('.custom-heading-wrapper');
       const ta = wrapper.querySelector('.custom-ta');
@@ -574,11 +536,9 @@ window.addCustomHeading = function(btn) {
       ta.style.fontWeight = (currentWeight === '700' || currentWeight === 'bold') ? '400' : '700';
       triggerAutoSave();
   };
-
   window.toggleSidebar = function() {
       document.querySelector('.sidebar').classList.toggle('hidden');
   };
-
     window.generateSinglePDF = async function() {
       alert("વર્તમાન પેજની PDF ડાઉનલોડ શરૂ થશે. કૃપા કરીને રાહ જુઓ...");
       
@@ -588,9 +548,8 @@ window.addCustomHeading = function(btn) {
       const element = document.getElementById('printableSheet');
       
       let words = currentItem.title.split(' ').slice(0, 3).join('_');
-      words = words.replace(/[\/\\:*?"<>|]/g, '');
+      words = words.replace(/[\/\:*?"<>|]/g, '');
       const filename = `PART${currentPart}_${words}_Single.pdf`;
-
       const opt = {
         margin:       [5, 0, 5, 0],
         filename:     filename,
@@ -603,14 +562,9 @@ window.addCustomHeading = function(btn) {
         },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
-
       await html2pdf().set(opt).from(element).save();
       alert("PDF ડાઉનલોડ પૂર્ણ થઈ ગઈ છે!");
   };
-
-
-
-
   // Point 3: Insert Table above the Pink Strip
   window.addNewTable = function() {
     const tableHTML = `
@@ -642,15 +596,12 @@ window.addCustomHeading = function(btn) {
     }
     triggerAutoSave();
   };
-
   function getTemplateHTML(item, part) {
     const key = `p${part}_${item.id}`;
     // Point 1 & 3: Default data loading
     const data = dummyData[key] || { desc: "આધાર પુરાવાની વિગત", th: ["ક્રમ","વિગત","સ્થિતિ"], tr:[["૧","માહિતી","નોંધ"]] };
-
     let ths = "";
     data.th.forEach(text => { ths += `<th><div class="tbl-input" contenteditable="true">${text}</div></th>`; });
-
     let trs = "";
     data.tr.forEach((row) => {
       trs += "<tr>";
@@ -663,7 +614,6 @@ window.addCustomHeading = function(btn) {
       });
       trs += "</tr>";
     });
-
     let photoSlots = createPhotoSlotHtml('slot_' + part + '_' + item.id + '_1', 'આધાર-પુરાવાનો ફોટો (ફરજિયાત)', '[ અહી ફોટો અપલોડ કરો ]', true);
     
     return `
@@ -678,8 +628,6 @@ window.addCustomHeading = function(btn) {
   <div class="section-head custom-sh" contenteditable="true" style="margin-top:0;">(02) આધાર-પુરાવાની વિગત :</div>
   <div class="desc-textarea custom-ta" contenteditable="true">${data.desc}</div>
 </div>
-
-
 <div class="table-container" style="margin-top:15px;">
   <div class="tbl-controls no-print">
     <div style="margin-right:auto; display:flex; gap:5px; align-items:center;">
@@ -700,15 +648,12 @@ window.addCustomHeading = function(btn) {
     <tbody>${trs}</tbody>
   </table>
 </div>
-
 <div class="no-print" style="text-align:center; margin-top:20px; margin-bottom:20px;">
   <button class="btn-action btn-add-table" onclick="addNewTable()">+ આખું નવું ટેબલ ઉમેરો</button>
 </div>
-
 <div id="pinkNoteStrip" class="no-print" style="font-size:12.5px; color:#ef4444; font-weight:800; text-align:center; margin-top:20px; background:#fee2e2; padding:6px; border-radius:4px; border:1px solid #fca5a5;">
   💡 નોંધ: જો આપ કોઈ સ્લોટમાં ફોટો મૂકવા ઈચ્છતા ન હોય, તો ખૂણામાં આપેલા '✕' બટન પર ક્લિક કરીને તે બોક્સ કાઢી નાખો. ફોટાને ડ્રેગ કરીને મોટો-નાનો કરી શકાય છે.
 </div>
-
 <div class="photo-slot-grid" id="photoGridArea">
   ${photoSlots}
 </div>
@@ -716,7 +661,6 @@ window.addCustomHeading = function(btn) {
    <button class="btn-action" style="background:#3b82f6;" onclick="addExtraPhotoSlot(this)">+ અન્ય ફોટો ઉમેરો</button>
 </div>`;
   }
-
   function setPart(p) {
     currentPart = p;
     document.getElementById('tab1').classList.toggle('active', p === 1);
@@ -728,31 +672,25 @@ window.addCustomHeading = function(btn) {
     renderEvidenceList();
     loadContent(currentItem);
   }
-
   function renderEvidenceList() {
     const ul = document.getElementById('evidenceUl');
     ul.innerHTML = '';
     const db = currentPart === 1 ? dbPart1 : dbPart2;
     const q = document.getElementById('searchInput').value.toLowerCase();
-
     db.forEach(item => {
       if (q && !item.title.toLowerCase().includes(q) && !item.id.toString().includes(q)) return;
       const li = document.createElement('li');
       li.className = 'evidence-item' + (item.id === currentItem.id ? ' active' : '');
-      li.innerHTML = `<span class="badge-sr">item.id</span><span>{item.title}</span>`;
+      li.innerHTML = `<span class="badge-sr">${item.id}</span><span>${item.title}</span>`;
       li.onclick = () => { currentItem = item; renderEvidenceList(); loadContent(item); };
       ul.appendChild(li);
     });
   }
-
   function filterBySearch() { renderEvidenceList(); }
-
   function toggleColorMode() { document.body.classList.toggle('colorful-mode'); }
-
   async function loadContent(item) {
     document.getElementById('docMainTitle').innerText = item.title;
-    const dbKey = `gunotsav_p currentPart_i {item.id}`;
-
+    const dbKey = `gunotsav_p${currentPart}i${item.id}`;
     try {
       let savedHtml = await DBSystem.get(dbKey);
       if (!savedHtml) {
@@ -763,7 +701,6 @@ window.addCustomHeading = function(btn) {
             localStorage.removeItem(dbKey); 
          }
       }
-
       if (savedHtml) {
         document.getElementById('docEditableBody').innerHTML = savedHtml;
       } else {
@@ -773,7 +710,6 @@ window.addCustomHeading = function(btn) {
       document.getElementById('docEditableBody').innerHTML = getTemplateHTML(item, currentPart);
     }
   }
-
   window.triggerAutoSave = function() {
     clearTimeout(autoSaveTimer);
     const ind = document.getElementById('saveStatus');
@@ -784,7 +720,7 @@ window.addCustomHeading = function(btn) {
     autoSaveTimer = setTimeout(async () => {
       const htmlContent = document.getElementById('docEditableBody').innerHTML;
       try {
-        await DBSystem.set(`gunotsav_p currentPart_i {currentItem.id}`, htmlContent);
+        await DBSystem.set(`gunotsav_p${currentPart}i${currentItem.id}`, htmlContent);
         ind.innerText = '✓ ઓટો સેવ થયેલ';
         ind.style.color = '#15803d';
       } catch (e) {
@@ -794,13 +730,11 @@ window.addCustomHeading = function(btn) {
       setTimeout(() => { ind.style.display = 'none'; }, 2000);
     }, 1500); 
   };
-
   document.getElementById('mainContentArea').addEventListener('keyup', triggerAutoSave);
   document.getElementById('docEditableBody').addEventListener('input', triggerAutoSave);
   document.getElementById('mainContentArea').addEventListener('mouseup', function(e) {
     if (e.target.classList.contains('photo-display-box')) { triggerAutoSave(); }
   });
-
   function saveFontSettings() {
     const settings = { tblFontSize, isTblBold, infoFontSize, isInfoBold };
     localStorage.setItem('gunotsav_fonts', JSON.stringify(settings));
@@ -812,7 +746,6 @@ window.addCustomHeading = function(btn) {
     document.documentElement.style.setProperty('--info-fs', infoFontSize + 'px');
     document.documentElement.style.setProperty('--info-fw', isInfoBold ? '700' : '500');
   }
-
   window.changeTableFont = function(step) {
     tblFontSize += step;
     if(tblFontSize < 10) tblFontSize = 10;
@@ -826,7 +759,6 @@ window.addCustomHeading = function(btn) {
     applyFontSettings();
     saveFontSettings();
   };
-
   window.changeInfoFont = function(step) {
     infoFontSize += step;
     if(infoFontSize < 10) infoFontSize = 10;
@@ -834,13 +766,11 @@ window.addCustomHeading = function(btn) {
     applyFontSettings();
     saveFontSettings();
   };
-
   window.toggleInfoBold = function() {
     isInfoBold = !isInfoBold;
     applyFontSettings();
     saveFontSettings();
   };
-
   window.addNewRow = function(btn) {
     const tbody = btn.closest('.table-container').querySelector('tbody');
     const newRow = tbody.rows[tbody.rows.length - 1].cloneNode(true);
@@ -851,13 +781,11 @@ window.addCustomHeading = function(btn) {
     tbody.appendChild(newRow);
     triggerAutoSave();
   };
-
   window.deleteLastRow = function(btn) {
     const tbody = btn.closest('.table-container').querySelector('tbody');
     if(tbody.rows.length > 1) { tbody.removeChild(tbody.lastElementChild); triggerAutoSave(); } 
     else { alert("ટેબલમાં ઓછામાં ઓછી ૧ હરોળ હોવી જરૂરી છે."); }
   };
-
   window.addNewColumn = function(btn) {
     const table = btn.closest('.table-container').querySelector('table');
     const theadTr = table.querySelector('thead tr');
@@ -871,7 +799,6 @@ window.addCustomHeading = function(btn) {
     });
     triggerAutoSave();
   };
-
   window.deleteLastColumn = function(btn) {
     const table = btn.closest('.table-container').querySelector('table');
     const theadTr = table.querySelector('thead tr');
@@ -881,7 +808,6 @@ window.addCustomHeading = function(btn) {
       triggerAutoSave();
     } else { alert("ટેબલમાં ઓછામાં ઓછી ૧ કોલમ હોવી જરૂરી છે."); }
   };
-
   window.deleteTable = function(btn) {
     if(confirm('શું તમે ખરેખર આ ટેબલ ડિલીટ કરવા માંગો છો?')) {
       const tableContainer = btn.closest('.table-container');
@@ -891,7 +817,6 @@ window.addCustomHeading = function(btn) {
       }
     }
   };
-
   function compressImage(file, maxWidth, callback) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -910,7 +835,6 @@ window.addCustomHeading = function(btn) {
       };
     };
   }
-
   window.handleSlotImageUpload = function(event, slotKey) {
     const file = event.target.files[0];
     if (!file) return;
@@ -919,7 +843,6 @@ window.addCustomHeading = function(btn) {
        triggerAutoSave();
     });
   };
-
   window.removePhotoSlot = function(slotKey) {
     if(confirm('શું તમે આ ફોટો સ્લોટ કાઢી નાખવા માંગો છો?')) {
       const card = document.getElementById('card_' + slotKey);
@@ -938,7 +861,6 @@ window.addCustomHeading = function(btn) {
       triggerAutoSave();
     }
   };
-
   window.addExtraPhotoSlot = function(btn) {
     const grid = document.getElementById('photoGridArea');
     const slotKey = 'ext_' + Date.now();
@@ -950,7 +872,6 @@ window.addCustomHeading = function(btn) {
     }
     triggerAutoSave();
   };
-
   window.uploadSignature = function(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -959,18 +880,15 @@ window.addCustomHeading = function(btn) {
       applySignature();
     });
   };
-
   window.removeSignature = function() {
     localStorage.removeItem('gunotsav_sig_img');
     applySignature();
     document.getElementById('sigUploadInput').value = '';
   };
-
   window.resizeSignature = function(val) {
     localStorage.setItem('gunotsav_sig_size', val);
     document.getElementById('sigImg').style.width = val + 'px';
   };
-
   function applySignature() {
     const sigData = localStorage.getItem('gunotsav_sig_img');
     const sigSize = localStorage.getItem('gunotsav_sig_size') || 120;
@@ -979,7 +897,6 @@ window.addCustomHeading = function(btn) {
     const removeBtn = document.getElementById('btnRemoveSig');
     const lineEl = document.getElementById('sigLine');
     const textEl = document.getElementById('sigTitleText');
-
     if (sigData) {
       imgEl.src = sigData;
       imgEl.style.width = sigSize + 'px';
@@ -996,7 +913,6 @@ window.addCustomHeading = function(btn) {
       lineEl.style.display = 'block';
     }
   }
-
   function validateAndPrint() {
     const activeSlots = document.querySelectorAll('.photo-slot-card:not(.deleted)');
     let allValid = true;
@@ -1010,54 +926,42 @@ window.addCustomHeading = function(btn) {
     }
     window.print();
   }
-
   // Point 5: Bulk PDF Cancel Mechanism
   let isPdfCancelled = false;
   window.cancelBulkPDF = function() {
       isPdfCancelled = true;
   };
-
    window.generateBulkPDF = async function() {
       const startStr = prompt("કેટલા નંબરથી PDF ડાઉનલોડ કરવી છે? (દા.ત. 1)", "1");
       if(!startStr) return;
       const endStr = prompt("કેટલા નંબર સુધી PDF ડાઉનલોડ કરવી છે? (દા.ત. 38)", "38");
       if(!endStr) return;
-
       const start = parseInt(startStr);
       const end = parseInt(endStr);
       const db = currentPart === 1 ? dbPart1 : dbPart2;
-
       if(isNaN(start) || isNaN(end) || start > end) {
           alert("કૃપા કરીને સાચો નંબર દાખલ કરો."); return;
       }
-
       isPdfCancelled = false;
       document.getElementById('pdfProgressModal').style.display = 'block';
       const originalItem = currentItem;
-
       // ફોન્ટ સંપૂર્ણ લોડ થવાની રાહ જુઓ
       await document.fonts.ready;
-
       for(let i = start; i <= end; i++) {
           if(isPdfCancelled) {
               alert("PDF ડાઉનલોડ પ્રક્રિયા રદ કરવામાં આવી છે.");
               break;
           }
-
           document.getElementById('pdfProgressText').innerText = `પેજ: ${i} / ${end}`;
-
           const item = db.find(d => d.id === i);
           if(!item) continue;
-
           await loadContent(item);
           await new Promise(r => setTimeout(r, 600)); 
-
           const element = document.getElementById('printableSheet');
           
           let words = item.title.split(' ').slice(0, 3).join('_');
           words = words.replace(/[\/\\:*?"<>|]/g, '');
           const filename = `PART${currentPart}_${words}_${item.id}.pdf`;
-
           const opt = {
             margin:       [5, 0, 5, 0],
             filename:     filename,
@@ -1070,18 +974,14 @@ window.addCustomHeading = function(btn) {
             },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
           };
-
           await html2pdf().set(opt).from(element).save();
       }
-
       document.getElementById('pdfProgressModal').style.display = 'none';
       await loadContent(originalItem);
       if(!isPdfCancelled) {
          alert("તમામ પસંદ કરેલ PDF ડાઉનલોડ પૂર્ણ થઈ ગઈ છે!");
       }
   };
-
-
   // Point 4: Date Format Logic (dd/mm/yyyy)
   function updateProfileInfo() {
     document.getElementById('lblSchoolName').innerText = document.getElementById('schoolNameInput').value;
@@ -1098,7 +998,7 @@ window.addCustomHeading = function(btn) {
     if(dateVal) {
         const parts = dateVal.split('-');
         if(parts.length === 3) {
-            document.getElementById('lblDateFooter').innerText = `parts[2]/{parts[1]}/${parts[0]}`;
+            document.getElementById('lblDateFooter').innerText = `${parts[2]}/${parts[1]}/${parts[0]}`;
         } else {
             document.getElementById('lblDateFooter').innerText = dateVal;
         }
@@ -1118,14 +1018,12 @@ window.addCustomHeading = function(btn) {
     };
     localStorage.setItem('gunotsav_profile', JSON.stringify(profile));
   }
-
   window.onload = function() {
     const savedGlobalFont = localStorage.getItem('gunotsav_global_font');
     if(savedGlobalFont) {
         document.body.style.fontFamily = savedGlobalFont;
         document.getElementById('fontSelector').value = savedGlobalFont;
     }
-
     const savedFonts = JSON.parse(localStorage.getItem('gunotsav_fonts'));
     if(savedFonts) {
       tblFontSize = savedFonts.tblFontSize || 14.5;
@@ -1134,7 +1032,6 @@ window.addCustomHeading = function(btn) {
       isInfoBold = savedFonts.isInfoBold !== undefined ? savedFonts.isInfoBold : true;
       applyFontSettings();
     }
-
     const savedProf = JSON.parse(localStorage.getItem('gunotsav_profile'));
     if(savedProf) {
       document.getElementById('schoolNameInput').value = savedProf.name || "અંત્રોલી પ્રાથમિક શાળા,";
@@ -1151,8 +1048,15 @@ window.addCustomHeading = function(btn) {
     setPart(1); 
   };
 </script>
+<!-- PWA Service Worker Registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').then(reg => {
+        console.log('SW registered!', reg);
+      }).catch(err => console.log('SW error: ', err));
+    });
+  }
+</script>
 </body>
 </html>
-
-
-
