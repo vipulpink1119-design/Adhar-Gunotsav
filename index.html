@@ -1,0 +1,1158 @@
+
+
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <title>ગુણોત્સવ ૨૦૨૬ - આધાર પુરાવા</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a73e8">
+  
+  <!-- ગુજરાતી ગુગલ ફોન્ટ્સ (Point 7) -->
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Gujarati:wght@400;700&family=Hind+Vadodara:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Serif+Gujarati:wght@400;700&family=Rasa:wght@400;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <style>
+    :root { 
+      --primary-dark: #0f3a5d; --primary: #1a568c; --accent: #d97706; 
+      --success: #15803d; --danger: #ef4444; --bg-slate: #cbd5e1; --border-color: #94a3b8; 
+      --c-text: #1e293b; --c-th-bg: #e2e8f0; --c-th-text: #0f172a; --c-td-border: #334155;
+      --tbl-fs: 14.5px; --tbl-fw: 800; --info-fs: 13.5px; --info-fw: 700;
+    }
+    
+    .colorful-mode {
+      --c-text: #0f3a5d; --c-th-bg: #dbeafe; --c-th-text: #1e3a8a; --c-td-border: #3b82f6;
+    }
+    .colorful-mode .doc-main-title { color: #dc2626 !important; }
+    .colorful-mode .info-profile-box { background: #fdf4ff !important; border-color: #d946ef !important; }
+    .colorful-mode .tbl-input { color: #065f46; font-weight: var(--tbl-fw); }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 0; font-family: 'Noto Sans Gujarati', sans-serif; background: var(--bg-slate); color: #1e293b; font-size: 14.5px; }
+    .app-container { display: flex; height: 100vh; overflow: hidden; }
+
+    /* Sidebar Layout */
+    .sidebar { width: 450px; background: #ffffff; border-right: 2px solid var(--border-color); display: flex; flex-direction: column; z-index: 200; transition: width 0.3s, padding 0.3s; overflow-x: hidden; }
+    .sidebar.hidden { width: 0; border-right: none; }
+
+    .sidebar-header { padding: 16px; background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #ffffff; text-align: center;}
+    .sidebar-header h2 { margin: 0; font-size: 17px; font-weight: 800; }
+    .sidebar-header p { margin: 4px 0 0 0; font-size: 12px; font-weight: 600; opacity: 0.9; }
+    
+    .tabs { display: flex; border-bottom: 2px solid var(--border-color); background: #f1f5f9; }
+    .tab { flex: 1; padding: 14px; text-align: center; font-weight: 800; font-size: 15px; cursor: pointer; color: #475569; transition: 0.3s; border-bottom: 4px solid transparent; }
+    .tab:hover { background: #e2e8f0; }
+    .tab#tab1.active { color: #15803d; border-bottom-color: #15803d; background: #f0fdf4; }
+    .tab#tab2.active { color: #b45309; border-bottom-color: #b45309; background: #fffbeb; }
+
+    .school-details-dropdown summary { padding: 12px 16px; font-weight: 800; cursor: pointer; list-style: none; background: #e2e8f0; border-bottom: 2px solid var(--border-color); }
+    .sidebar-inputs { padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; max-height: 300px; overflow-y: auto; background: #fafafa;}
+    .input-grp { display: flex; flex-direction: column; gap: 3px; }
+    .input-grp.full-col { grid-column: 1 / -1; }
+    .input-grp label { font-size: 11.5px; font-weight: 700; color: #334155; }
+    .input-grp input, .input-grp select { padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; font-size: 13px; font-weight: 700; }
+
+    .search-box { padding: 10px 14px; background: #f8fafc; border-bottom: 2px solid var(--border-color); }
+    .search-box input { width: 100%; padding: 8px 12px; border: 1.5px solid var(--border-color); border-radius: 6px; font-family: inherit; font-weight: 600;}
+
+    /* List (Point 6 - Line spacing) */
+    .evidence-list { flex: 1; overflow-y: auto; list-style: none; padding: 0; margin: 0; }
+    .evidence-item { padding: 14px 16px; border-bottom: 1px solid #e2e8f0; cursor: pointer; font-size: 15.5px; font-weight: 700; display: flex; align-items: flex-start; gap: 10px; line-height: 1.35; color: #334155;}
+    .evidence-item:hover { background: #f1f5f9; }
+    .evidence-item.active { background-color: #e0f2fe; border-left: 6px solid #2563eb; color: #1e3a8a; }
+    .badge-sr { background: #1e293b; color: white; padding: 3px 8px; border-radius: 4px; font-size: 13px; font-weight: 800; white-space: nowrap; margin-top: 2px; }
+
+    /* Main Doc Area */
+    .main-content { flex: 1; display: flex; flex-direction: column; background: #94a3b8; overflow-y: auto; }
+    .top-toolbar { padding: 10px 18px; background: #ffffff; border-bottom: 2px solid var(--border-color); display: flex; justify-content: flex-end; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); gap: 12px;}
+    
+    .save-indicator { font-size: 13px; font-weight: 800; color: #15803d; background: #f0fdf4; padding: 5px 10px; border-radius: 4px; border: 1px solid #bbf7d0; display: none;}
+    .btn-toolbar { background: var(--primary); color: white; padding: 8px 15px; border-radius: 6px; border: none; font-weight: 800; cursor: pointer; font-size: 14px; transition: 0.2s;}
+    .btn-toolbar:hover { background: var(--primary-dark); }
+    .btn-color-toggle { background: #db2777; }
+    .btn-color-toggle:hover { background: #be185d; }
+    
+    .paper-preview { width: 210mm; margin: 20px auto; background: #ffffff; padding: 15mm 15mm; border: 1px solid #cbd5e1; box-shadow: 0 5px 25px rgba(0,0,0,0.2); }
+    .doc-main-header { text-align: center; background: #f8fafc; border: 2px solid var(--primary-dark); padding: 8px; border-radius: 6px; margin-bottom: 14px; }
+    .doc-main-title { font-size: 18.5px; font-weight: 800; color: var(--primary-dark); margin: 0; transition: color 0.3s;}
+    
+    .info-profile-box { border: 1.5px solid var(--c-td-border); border-radius: 5px; padding: 10px 14px; margin-bottom: 14px; background: #fafafa; transition: 0.3s;}
+    .info-profile-title { font-weight: var(--info-fw); font-size: calc(var(--info-fs) + 1.5px); margin-bottom: 6px; border-bottom: 1px dashed var(--c-td-border); padding-bottom: 3px; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 16px; font-size: var(--info-fs); color: var(--c-text); font-weight: var(--info-fw); transition: font-size 0.2s;}
+
+    .section-head { font-weight: 800; font-size: 15px; color: var(--primary-dark); margin: 14px 0 6px 0; border-bottom: 1.5px solid var(--c-td-border); padding-bottom: 3px; }
+    .custom-heading-wrapper { position: relative; margin-top: 15px; page-break-inside: avoid; break-inside: avoid; border: 1px dashed #cbd5e1; padding: 5px; border-radius: 6px; background:#f8fafc;}
+    .custom-heading-wrapper .btn-remove-slot { top: -10px !important; right: -10px !important; }
+
+    /* Point 6: Line Spacing */
+    .desc-textarea { width: 100%; min-height: 50px; padding: 8px; font-size: 14px; font-weight: 700; color: var(--c-text); line-height: 1.45; border: 1px dashed #94a3b8; border-radius: 4px; background: #f8fafc; font-family: inherit; outline: none; transition: 0.3s; word-break: break-word; white-space: pre-wrap;}
+    .desc-textarea:focus { border-color: var(--primary); background: #ffffff; }
+
+    .table-container { margin-bottom: 15px; overflow-x: auto; page-break-inside: auto; }
+    .official-table { width: 100%; border-collapse: collapse; margin: 5px 0; font-size: var(--tbl-fs); table-layout: auto; transition: font-size 0.2s; page-break-inside: auto; break-inside: auto;}
+    .official-table th { background: var(--c-th-bg); color: var(--c-th-text); padding: 5px; border: 1.5px solid var(--c-td-border); transition: 0.3s;}
+    .official-table td { border: 1.5px solid var(--c-td-border); padding: 4px; text-align: center; vertical-align: middle; transition: 0.3s;}
+    .official-table tr { page-break-inside: avoid; break-inside: avoid; }
+    .tbl-input { display: block; width: 100%; min-height: 25px; padding: 5px; font-weight: var(--tbl-fw); font-size: var(--tbl-fs); color: var(--c-text); border: 1px dashed transparent; background: transparent; text-align: left; white-space: pre-wrap; word-break: break-word; outline: none; transition: 0.2s;}
+    .tbl-input:hover { border-color: #cbd5e1; background: #f8fafc;}
+    .official-table th .tbl-input { text-align: center; }
+    .tbl-input:focus { border: 1px solid var(--primary); background: #ffffff; }
+
+    .tbl-controls { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 10px; flex-wrap: wrap;}
+    .btn-action { background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; }
+    .btn-action:hover { background: #059669; }
+    .btn-danger { background: var(--danger); }
+    .btn-danger:hover { background: #dc2626; }
+    .btn-primary { background: var(--primary); }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-add-table { background: #0284c7; margin-bottom: 15px; }
+
+    /* Photo Options */
+    .photo-slot-grid { display: flex; flex-wrap: wrap; gap: 14px; margin: 14px 0; }
+    .photo-slot-card { width: calc(50% - 7px); border: 1.5px solid #94a3b8; border-radius: 6px; padding: 8px; background: #f8fafc; text-align: center; position: relative; page-break-inside: avoid; break-inside: avoid;}
+    .photo-slot-card.full-width { width: 100%; }
+    
+    .photo-display-box { 
+        width: 200px; height: 250px; min-width: 100px; max-width: 100%; 
+        background: #e2e8f0; border: 1.5px dashed #64748b; display: flex; 
+        align-items: center; justify-content: center; overflow: hidden; 
+        margin: 0 auto 6px auto; resize: both; 
+    }
+    .photo-slot-card.full-width .photo-display-box { width: 80%; height: 300px; }
+    .photo-display-box img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+    
+    .btn-slot-upload { background: #059669; color: white; border: none; padding: 6px 14px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+    .btn-remove-slot { position: absolute; top: -10px; right: -10px; background: #ef4444; color: white; border: 2px solid white; border-radius: 50%; width: 26px; height: 26px; font-size: 14px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10;}
+
+    /* Footer & Signature */
+    .doc-official-footer { margin-top: 30px; padding-top: 10px; display: flex; justify-content: space-between; align-items: flex-end; font-weight: 800; page-break-inside: avoid; break-inside: avoid; }
+    .sig-wrapper { text-align: center; position: relative;}
+    .sig-img { max-height: 120px; width: 150px; object-fit: contain; margin-bottom: 2px; display: none;}
+    .sig-slider-box { display: flex; flex-direction: column; align-items: center; gap: 5px; margin-top: 5px;}
+    .sig-slider-box input[type="range"] { width: 120px; }
+    
+    /* Print Layout */
+    @media print {
+      body * { visibility: hidden; }
+      body { background: white; font-family: inherit; }
+      .app-container { height: auto; overflow: visible; display: block;}
+      .sidebar, .top-toolbar, .btn-slot-upload, .btn-remove-slot, .tbl-controls, .btn-add-table, .sig-slider-box, .no-print { display: none !important; }
+      .main-content { background: transparent; padding: 0; display: block;}
+      .paper-preview, .paper-preview * { visibility: visible; }
+      .paper-preview { width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; display: block;}
+      .tbl-input, .desc-textarea { border: none !important; background: transparent !important; resize: none; overflow: hidden;}
+      .custom-heading-wrapper { border: none !important; background: transparent !important; padding: 0 !important; }
+      
+      @page { size: A4 portrait; margin: 15mm; }
+      
+      .doc-official-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding-bottom: 5mm;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .paper-preview { padding-bottom: 40mm; }
+      .table-container { page-break-inside: auto; break-inside: auto;}
+      tr, td, th { page-break-inside: avoid; break-inside: avoid; page-break-after: auto; }
+      .photo-display-box { resize: none; border: none; }
+    }
+
+    /* Modal for PDF Progress */
+    #pdfProgressModal {
+      display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: white; padding: 25px 35px; border-radius: 8px; box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+      z-index: 9999; text-align: center; font-family: inherit; width: 320px;
+    }
+    #pdfProgressModal h3 { margin-top: 0; color: var(--primary-dark); font-weight: 800; }
+  </style>
+</head>
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+}
+</script>
+<body>
+
+<!-- PDF Progress Modal (Point 5) -->
+<div id="pdfProgressModal">
+  <h3>PDF ડાઉનલોડ ચાલુ છે...</h3>
+  <p id="pdfProgressText" style="font-weight: 700; font-size: 16px; color: #334155; margin-bottom: 20px;">પેજ: 1 / 10</p>
+  <button class="btn-action btn-danger" onclick="cancelBulkPDF()">✕ રદ કરો (Cancel)</button>
+</div>
+
+<div class="app-container">
+  
+  <div class="sidebar no-print">
+    <div class="sidebar-header">
+      <h2>તૈયાર કરનાર : ગણેશભાઈ સી. ચૌધરી</h2>
+      <p>અંત્રોલી પ્રાથમિક શાળા, તા.અરેઠ, જિ.સુરત</p>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" id="tab1" onclick="setPart(1)">📄 PART 1</div>
+      <div class="tab" id="tab2" onclick="setPart(2)">📄 PART 2</div>
+    </div>
+
+    <details class="school-details-dropdown">
+      <summary>શાળાની પ્રોફાઇલ / સહી સેટિંગ્સ</summary>
+      <div class="sidebar-inputs">
+        <div class="input-grp full-col">
+          <label>ફોન્ટ પસંદ કરો:</label>
+          <select id="fontSelector" onchange="changeGlobalFont(this.value)">
+            <option value="'Noto Sans Gujarati', sans-serif">Noto Sans Gujarati (Default)</option>
+            <option value="'Noto Serif Gujarati', serif">Noto Serif Gujarati</option>
+            <option value="'Hind Vadodara', sans-serif">Hind Vadodara</option>
+            <option value="'Rasa', serif">Rasa</option>
+            <option value="'Anek Gujarati', sans-serif">Anek Gujarati</option>
+          </select>
+        </div>
+        <div class="input-grp full-col"><label>શાળાનું નામ:</label><input type="text" id="schoolNameInput" value="અંત્રોલી પ્રાથમિક શાળા," oninput="updateProfileInfo()"></div>
+        <div class="input-grp"><label>UDISE કોડ:</label><input type="text" id="diseInput" value="24220509001" oninput="updateProfileInfo()"></div>
+        <div class="input-grp"><label>વર્ષ:</label><input type="text" id="yearInput" value="2026-27" oninput="updateProfileInfo()"></div>
+        <div class="input-grp full-col"><label>ગામ/તાલુકો/જિલ્લો:</label><input type="text" id="villageInput" value="અંત્રોલી,તા.માંડવી,જિ.સુરત" oninput="updateProfileInfo()"></div>
+        <div class="input-grp full-col"><label>ચાલતા ધોરણ:</label><input type="text" id="stdInput" value="બાલવાટિકા થી ૮" oninput="updateProfileInfo()"></div>
+        <div class="input-grp full-col"><label>આચાર્યનું નામ:</label><input type="text" id="principalInput" value="ગણેશભાઈ સી. ચૌધરી" oninput="updateProfileInfo()"></div>
+        
+        <div class="input-grp"><label>સ્થળ (Place):</label><input type="text" id="placeInput" value="અંત્રોલી પ્રાથમિક શાળા" oninput="updateProfileInfo()"></div>
+        <div class="input-grp"><label>તારીખ (Date):</label><input type="date" id="dateInput" value="2026-06-15" oninput="updateProfileInfo()"></div>
+
+        <div class="input-grp full-col" style="background:#e2e8f0; padding:8px; border-radius:5px; margin-top:5px;">
+          <label>આચાર્યશ્રીની સહી/સિક્કો (અપલોડ કરો):</label>
+          <input type="file" id="sigUploadInput" accept="image/*" onchange="uploadSignature(event)">
+          <button id="btnRemoveSig" class="btn-action btn-danger" style="display:none; margin-top:5px;" onclick="removeSignature()">✕ સહી કાઢી નાખો</button>
+        </div>
+      </div>
+    </details>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="આધાર શોધો (નામ અથવા નંબર)..." onkeyup="filterBySearch()">
+    </div>
+    <ul class="evidence-list" id="evidenceUl"></ul>
+  </div>
+
+  <div class="main-content" id="mainContentArea">
+    <div class="top-toolbar no-print">
+       <!-- હમ્બર્ગ મેનુ બટન -->
+      <button class="btn-action" style="font-size: 18px; padding: 4px 10px; margin-right: auto; background:#1e293b;" onclick="toggleSidebar()" title="મેનુ છુપાવો/બતાવો">☰</button>
+      
+      <span class="save-indicator" id="saveStatus">✓ ઓટો સેવ...</span>
+      <button class="btn-toolbar btn-color-toggle" onclick="toggleColorMode()">🎨 રંગીન અક્ષરો કરો</button>
+      
+      <!-- PDF ડાઉનલોડ Single (નવું બટન) -->
+      <button class="btn-toolbar" style="background:#059669;" onclick="generateSinglePDF()">📥 PDF ડાઉનલોડ (Single)</button>
+      <button class="btn-toolbar" style="background:#8b5cf6;" onclick="generateBulkPDF()">📥 PDF ડાઉનલોડ (Bulk)</button>
+      <button class="btn-toolbar" style="background:#2563eb;" onclick="validateAndPrint()">🖨️ પ્રિન્ટ કાઢો</button>
+    </div>
+
+    
+    <div class="paper-preview" id="printableSheet">
+      <div class="doc-main-header">
+        <h1 class="doc-main-title" id="docMainTitle"></h1>
+      </div>
+      <div class="info-profile-box">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+          <div class="info-profile-title">(01) શાળાની માહિતી :</div>
+          <div class="no-print font-controls" style="margin-bottom:6px;">
+            <span style="font-size:11px; font-weight:bold; color:#475569;">અક્ષરો: </span>
+            <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="changeInfoFont(1)">A+</button>
+            <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="changeInfoFont(-1)">A-</button>
+            <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="toggleInfoBold()"><b>B</b></button>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div>શાળાનું નામ : <strong id="lblSchoolName"></strong></div>
+          <div>UDISE કોડ : <strong id="lblUdise"></strong></div>
+          <div>સરનામું : <strong id="lblVillage"></strong></div>
+          <div>ચાલતા ધોરણ : <strong id="lblStd"></strong></div>
+          <div>વર્ષ : <strong id="lblYear"></strong></div>
+          <div>આચાર્યશ્રી : <strong id="lblPrincipal"></strong></div>
+        </div>
+      </div>
+
+      <div id="docEditableBody"></div>
+
+      <div class="doc-official-footer">
+        <div style="line-height: 1.8;">
+          સ્થળ  : <strong id="lblPlaceFooter">........</strong><br>
+          તારીખ : <strong id="lblDateFooter">____/____/૨૦૨૬</strong>
+        </div>
+        <div class="sig-wrapper">
+          <img id="sigImg" class="sig-img" src="">
+          <div style="font-weight:bold; margin-bottom:5px;" id="sigTitleText">આચાર્યની સહી અને સિક્કો</div>
+          <div id="sigLine">______________________</div>
+          <div class="sig-slider-box no-print" id="sigSliderBox" style="display:none;">
+            <label style="font-size:11px; color:#ef4444;">સહીની સાઈઝ:</label>
+            <input type="range" id="sigSizeSlider" min="80" max="250" value="120" oninput="resizeSignature(this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // IndexedDB System
+  const DBSystem = {
+    db: null,
+    initPromise: null,
+    init() {
+      if (this.db) return Promise.resolve();
+      if (this.initPromise) return this.initPromise;
+      this.initPromise = new Promise((resolve, reject) => {
+        try {
+          const request = indexedDB.open("GunotsavData", 1);
+          request.onupgradeneeded = (e) => {
+            e.target.result.createObjectStore("docs");
+          };
+          request.onsuccess = (e) => {
+            this.db = e.target.result;
+            resolve();
+          };
+          request.onerror = (e) => reject(e);
+        } catch(err) { reject(err); }
+      });
+      return this.initPromise;
+    },
+    async set(key, val) {
+      try {
+        await this.init();
+        return new Promise((resolve, reject) => {
+          const tx = this.db.transaction("docs", "readwrite");
+          tx.objectStore("docs").put(val, key);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject();
+        });
+      } catch(e) { localStorage.setItem(key, val); }
+    },
+    async get(key) {
+      try {
+        await this.init();
+        return new Promise((resolve, reject) => {
+          const tx = this.db.transaction("docs", "readonly");
+          const req = tx.objectStore("docs").get(key);
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject();
+        });
+      } catch(e) { return localStorage.getItem(key); }
+    }
+  };
+
+  const dbPart1 = [
+    { id: 1, title: "શાળાએ ચાલુ શૈક્ષણિક વર્ષમાં આપેલ પ્રવેશની વિગત" },
+    { id: 2, title: "શાળાના કુલ શિક્ષકો અને વિદ્યાર્થીઓની સંખ્યા અને પ્રત્યેક વર્ગ દીઠ વિદ્યાર્થીઓની સંખ્યા" },
+    { id: 3, title: "શાળાના પ્રત્યેક કર્મચારી/ શિક્ષકને અપાયેલ કામગીરી/ વિષય અને તેમની શૈક્ષણિક – વ્યાવસાયિક લાયકાતની વિગત..." },
+    { id: 4, title: "શાળાના કર્મચારીઓના સેવા રેકોર્ડની જાળવણીની પદ્ધતિની વિગત" },
+    { id: 5, title: "કર્મચારીઓને પગાર ચૂકવણી, Payroll અને ઓડિટની વિગત" },
+    { id: 6, title: "કર્મચારીઓના સ્થાયીકરણ માટેના પ્રયાસોની વિગત, નવા નિમાયેલ અને શાળા છોડીને ગયેલ કર્મચારીઓની સંખ્યા" },
+    { id: 7, title: "કર્મચારીઓને આપેલ પ્રોત્સાહન - પુરસ્કાર સંબંધિત વિગત" },
+    { id: 8, title: "કર્મચારીઓની ફરિયાદોની નોંધ અને નિકાલ સંબંધિત વિગત" },
+    { id: 9, title: "શાળાની વિકાસ યોજનાનો દસ્તાવેજ" },
+    { id: 10, title: "શાળા વિકાસ યોજનાના અમલીકરણ, સમીક્ષા અને શૈક્ષણિક બાબતોમાં થયેલ ગુણાત્મક ફેરફારની વિગત" },
+    { id: 11, title: "SMC/ વાલીમંડળની રચના અને પુન:રચના પ્રક્રિયા સંબંધિત અહેવાલ/ દસ્તાવેજ અને સભ્યોની વિગત" },
+    { id: 12, title: "SMC/ વાલીમંડળની બેઠકોનું રજીસ્ટર" },
+    { id: 13, title: "બેઠક કાર્યવાહી નોંધ (મિટિંગ મિનિટ્સ) બુક" },
+    { id: 14, title: "SMC/ વાલીમંડળની ઠરાવ બુક" },
+    { id: 15, title: "ગ્રાન્ટ ડિસ્પ્લે બોર્ડ – ફોટોગ્રાફ" },
+    { id: 16, title: "SMC/ વાલીમંડળની બેઠકોનું રજીસ્ટર, મિટિંગ મિનિટ્સ બુક, ઠરાવ બુક (માત્ર મુખ્ય પાનાં)" },
+    { id: 17, title: "ઑડિટ સર્ટિફિકેટ (ગત નાણાકીય વર્ષ)" },
+    { id: 18, title: "ફાયર સેફ્ટીનું પ્રમાણપત્ર અને ફાયર સેફટીના સાધનોના ફોટોગ્રાફ્સ" },
+    { id: 19, title: "પ્રાથમિક સારવાર પેટી અને આપાતકાલીન તબીબી સેવાઓ મેળવવા માટેના સંપર્કોની વિગત" },
+    { id: 20, title: "વીજળીકરણ અને વીજઉપકરણોની સ્થિતિ દર્શાવતા ફોટોગ્રાફ્સ (20% વર્ગખંડોના)" },
+    { id: 21, title: "CCTV કેમેરાની વ્યવસ્થાની વિગત (સ્થાન, વ્યાપ અને નમૂનાના ફોટોગ્રાફ્સ)" },
+    { id: 22, title: "શાળા પરિસરમાં પ્રદર્શિત કરેલ આપત્તિ વ્યવસ્થાપન પ્લાન દર્શાવતો ફોટોગ્રાફ" },
+    { id: 23, title: "મોકડ્રીલ પ્રવૃત્તિનો ફોટોગ્રાફ્સ સહિતનો અહેવાલ" },
+    { id: 24, title: "હિતધારકોના પ્રતિભાવ એકત્રિત કરવાની વ્યવસ્થા, નમૂના અને કરેલ સુધારાની વિગતો" },
+    { id: 25, title: "રમતગમતના સાધનોની ઉપલબ્ધતા (ડેડસ્ટૉક રજીસ્ટરની અદ્યતન તારીજ)" },
+    { id: 26, title: "CWSN વિદ્યાર્થીઓ માટેની ભૌતિક સુવિધાઓ (ફોટોગ્રાફ્સ)" },
+    { id: 27, title: "પુસ્તકાલયના પુસ્તકોના ડેડસ્ટોક રજીસ્ટરની અદ્યતન તારીજ" },
+    { id: 28, title: "પુસ્તકાલયમાં આવતાં વર્તમાનપત્રો અને સામયિકોની અદ્યતન વિગત" },
+    { id: 29, title: "ભોજન માટેના સ્થાનનો ફોટોગ્રાફ અને તેની સ્વચ્છતા માટેની વ્યવસ્થાની વિગત" },
+    { id: 30, title: "ભોજનની ગુણવત્તાની ચકાસણી અને ગુણવત્તા અંગે પ્રતિભાવ આપવાની વ્યવસ્થાની વિગત" },
+    { id: 31, title: "પીવાના પાણીની સમગ્ર સુવિધાનો ફોટોગ્રાફ અને પીવાના શુદ્ધ પાણીની વ્યવસ્થાની વિગત" },
+    { id: 32, title: "પાણીની ટાંકીની સફાઈ અંગેના આયોજન અને અમલની વિગત" },
+    { id: 33, title: "કુમાર, કન્યા અને દિવ્યાંગ વિદ્યાર્થીઓ માટેના શૌચાલય સંકુલના ફોટોગ્રાફ" },
+    { id: 34, title: "શૌચાલયની સંખ્યાની વિગત, પાણીની ઉપલબ્ધતા અને સ્થિતિની વિગત" },
+    { id: 35, title: "શૌચાલયોની સ્વચ્છતા અને રખરખાવ માટેના આયોજન અને અમલની વિગત" },
+    { id: 36, title: "કચરાના વ્યવસ્થાપન અંગે શાળાની પદ્ધતિની વિગત – અહેવાલ" },
+    { id: 37, title: "વિદ્યાર્થીઓના વાર્ષિક આરોગ્ય તપાસનો અહેવાલ" },
+    { id: 38, title: "દિવ્યાંગતાની જાણ માટે વિદ્યાર્થીઓના સ્ક્રિનિંગ અને કરેલ અનુકાર્યની વિગત" }
+  ];
+
+  const dbPart2 = [
+    { id: 1, title: "શાળાના વાર્ષિક અભ્યાસક્રમ અને પ્રવૃત્તિ આયોજનની નકલ" },
+    { id: 2, title: "શાળાના 20% શિક્ષકોની દૈનિક આયોજનપોથીની નોંધના નમૂના" },
+    { id: 3, title: "આચાર્ય-સુપરવાઇઝરની શિક્ષકોના વર્ગખંડ અવલોકનની નોંધપોથીમાંથી નમૂનારૂપ પાના" },
+    { id: 4, title: "આચાર્યે-સુપરવાઇઝરે યાદૃચ્છિક રીતે વિદ્યાર્થીઓ પસંદ કરી કરેલ મૂલ્યાંકનની વિગત (ધો. 3, 4 અને 5)" },
+    { id: 5, title: "વિદ્યાર્થીની બે નોંધપોથી અને બે અન્ય પોથીઓમાંથી એક – એક પ્રકરણની માહિતી" },
+    { id: 6, title: "વિદ્યાર્થીની કોઇપણ 3 વિષયોની ઉત્તરવહીઓની નકલ" },
+    { id: 7, title: "ત્રિમાસિક કસોટીઓના પરિણામોને આધારે ઉપચારાત્મક કાર્યની વિગત દર્શાવતો અહેવાલ" },
+    { id: 8, title: "ત્રિમાસિક કસોટીઓના પરિણામોની વાલીઓને જાણ કરવાની પદ્ધતિ – વાલી બેઠકનો અહેવાલ" },
+    { id: 9, title: "આચાર્યે યાદૃચ્છિક રીતે પસંદ કરેલ વિદ્યાર્થીઓની 3 વિષયોની ઉત્તરવહીઓની નકલ" },
+    { id: 10, title: "કસોટીઓના પરિણામોની વાલીઓને જાણ અંગેની માહિતી – ફોટોગ્રાફ સહિત અહેવાલ" },
+    { id: 11, title: "યાદૃચ્છિક રીતે પસંદ વિદ્યાર્થીઓ પૈકી કોઇપણ એક વિદ્યાર્થીના HPC (પ્રગતિ પત્રક) ની નકલ" },
+    { id: 12, title: "શાળાની નિર્ણય પ્રક્રિયા અંગેની વિગત – નમૂનારૂપ 2 નિર્ણય લેવા માટેની કાર્યવાહી અને મિનિટ્સ" },
+    { id: 13, title: "શાળા સ્ટાફ મિટિંગના આયોજનની વિગત – 2 બેઠકના ચર્ચાના મુદ્દા અને મિટિંગ મિનિટ્સ" },
+    { id: 14, title: "વિવિધ શાળાકીય કાર્યક્રમો અને પ્રવૃત્તિઓમાં શિક્ષકોને જોડવાની યોજના – કામગીરીની વહેંચણી" },
+    { id: 15, title: "ગત શૈક્ષણિક વર્ષમાં શાળાના શિક્ષકો દ્વારા લેવાયેલ CPD (દીક્ષા/નિષ્ઠા) તાલીમની તારીજ" },
+    { id: 16, title: "શૈક્ષણિક/વ્યાવસાયિક વિકાસ સંબંધિત પ્રવૃત્તિઓમાં ભાગ લેનાર શિક્ષકોની સંખ્યા અને ટકાવારી" },
+    { id: 17, title: "શાળા સમયપત્રક (Master Timetable) ની નકલ" },
+    { id: 18, title: "સાંસ્કૃતિક કાર્યક્રમો – ઉજવણીઓ અને ગુણવત્તા બાબતોમાં SMC/ વાલીમંડળ સહભાગીતા" },
+    { id: 19, title: "SMC/વાલીમંડળ અને સમુદાયના શાળા અંગેના પ્રતિભાવો અને સૂચનો આધારે કરાયેલ અનુકાર્ય" },
+    { id: 20, title: "વિદ્યાર્થીઓના જ્ઞાન અને કૌશલ્યોમાં વૃદ્ધિ થાય તે માટે સમુદાયના સહયોગથી થયેલ પ્રવૃત્તિ" },
+    { id: 21, title: "પ્રાર્થનાસભાની પ્રવૃત્તિઓનું આયોજન (સમગ્ર શાળા અને વર્ગ અનુસાર)" },
+    { id: 22, title: "શાળા દ્વારા યોજાયેલ કલા શિક્ષણની પ્રવૃત્તિઓનો અહેવાલ" },
+    { id: 23, title: "કલા ઉત્સવમાં ભાગીદારીની વિગત અને પ્રમાણપત્રો" },
+    { id: 24, title: "શાળા દ્વારા યોજાયેલ યોગપ્રવૃત્તિઓનો અહેવાલ" },
+    { id: 25, title: "રમત સ્પર્ધાઓમાં (ખેલ મહાકુંભ વગેરે) શાળાની ભાગીદારીની વિગત અને પ્રમાણપત્રો" },
+    { id: 26, title: "બાળવૈજ્ઞાનિક પ્રદર્શનોમાં (Science Fair) શાળાની ભાગીદારીની વિગત અને પ્રમાણપત્રો" },
+    { id: 27, title: "શાળામાં યોજાતી પર્યાવરણલક્ષી (ઇકો ક્લબ) પ્રવૃત્તિઓનો અહેવાલ" },
+    { id: 28, title: "રાષ્ટ્રીય, સાંસ્કૃતિક અને દિનવિશેષ કાર્યક્રમોમાં વિદ્યાર્થીઓની ભાગીદારીનો અહેવાલ" },
+    { id: 29, title: "શાળા દ્વારા યોજાયેલ આનંદદાયી શનિવારની પ્રવૃત્તિઓનો અહેવાલ" },
+    { id: 30, title: "દફતર વિનાના 10 દિવસ (Bagless Days) સંબંધિત પ્રવૃત્તિઓનો અહેવાલ" },
+    { id: 31, title: "શાળા દ્વારા વર્ગ મોનિટર, બાલવૃંદ પ્રતિનિધિ, વિવિધ સમિતિના લીડરની પસંદગી પ્રક્રિયા" },
+    { id: 32, title: "પુસ્તકાલયના ઈશ્યૂ રજીસ્ટરની નકલ અને વિદ્યાર્થી દીઠ વંચાયેલ સરેરાશ પુસ્તક સંખ્યા" },
+    { id: 33, title: "શાળાના શિક્ષક દીઠ વંચાયેલ સરેરાશ પુસ્તક સંખ્યાની વિગત" },
+    { id: 34, title: "શાળા દ્વારા યોજાયેલ પુસ્તકાલય – વાંચન સંબંધિત પ્રવૃત્તિઓનો અહેવાલ" },
+    { id: 35, title: "ભોજન પહેલાં અને પછી વિદ્યાર્થીઓ હાથ-મોં સ્વચ્છ કરી શકે તે માટેની સુવિધા અને પ્રયાસો" },
+    { id: 36, title: "વિદ્યાર્થીઓની વ્યક્તિગત સ્વચ્છતાની કેળવણી અને આરોગ્યપ્રદ આહાર અંગેની જાગૃતિ" }
+  ];
+
+  const dummyData = {
+    p1_1: { desc: "શાળામાં ચાલુ શૈક્ષણિક વર્ષ દરમિયાન ધોરણ ૧ અને બાલવાટિકામાં સરકારશ્રીના નિયમો મુજબ પારદર્શક રીતે પ્રવેશ પ્રક્રિયા હાથ ધરવામાં આવેલ છે, જેની વિગત નીચે મુજબ છે.", th: ["ધોરણ", "નવા પ્રવેશ (ચાલુ વર્ષે)", "અન્ય શાળામાંથી આવેલ", "કુલ પ્રવેશ"], tr: [["બાલવાટિકા", "૧૦", "૦૦", "૧૦"], ["ધોરણ ૧", "૧૨", "૦૨", "૧૪"]] },
+    p1_2: { desc: "શાળામાં મંજૂર મહેકમ સામે કાર્યરત શિક્ષકો અને પ્રત્યેક વર્ગદીઠ કુમાર-કન્યાની હાજર સંખ્યાનું પત્રક નીચે મુજબ નિભાવવામાં આવેલ છે.", th: ["વિગત", "મંજૂર મહેકમ / કુલ સંખ્યા", "હાજર સંખ્યા"], tr: [["કુલ શિક્ષકો", "૦૬", "૦૫"], ["કુલ વિદ્યાર્થીઓ (ધો ૧ થી ૮)", "-", "૧૫૦"]] },
+    p1_3: { desc: "શાળાના તમામ શિક્ષકો ઉચ્ચ શૈક્ષણિક અને વ્યાવસાયિક લાયકાત ધરાવે છે. તેઓને તેમની લાયકાત અને અનુભવ અનુસાર વિષયોની યોગ્ય વહેંચણી કરવામાં આવેલ છે.", th: ["શિક્ષકનું નામ", "શૈક્ષણિક લાયકાત", "વ્યાવસાયિક લાયકાત", "સોંપાયેલ વિષય/ધોરણ"], tr: [["જિજ્ઞેશકુમાર આર. ચૌધરી", "M.A.", "B.Ed.", "ધોરણ ૬ થી ૮ ભાષા"], ["પ્રજ્ઞેશભાઈ એ. ચૌધરી", "B.Sc.", "B.Ed.", "ધોરણ ૬ થી ૮ ગણિત-વિજ્ઞાન"]] },
+    p1_4: { desc: "શાળાના તમામ કર્મચારીઓની સર્વિસ બુક, રજા પત્રક અને અન્ય સેવા રેકોર્ડ અદ્યતન સ્થિતિમાં ફાઈલિંગ કરી સુરક્ષિત જાળવવામાં આવે છે.", th: ["રેકોર્ડનો પ્રકાર", "જાળવણીની પદ્ધતિ", "અપડેટની સ્થિતિ"], tr: [["સર્વિસ બુક", "ભૌતિક કબાટમાં સુરક્ષિત", "વાર્ષિક અપડેટ પૂર્ણ"], ["રજા રજીસ્ટર", "ઓફિસ ફાઈલમાં", "નિયમિત નોંધાયેલ"]] },
+    p1_5: { desc: "શાળાના તમામ શિક્ષકોને સરકારશ્રીના નિયમાનુસાર દર માસની નિયત તારીખે પગાર ચૂકવવામાં આવે છે અને ગત વર્ષનું વાર્ષિક ઓડિટ પૂર્ણ થયેલ છે.", th: ["પ્રક્રિયા", "વિગત / પદ્ધતિ", "સ્થિતિ"], tr: [["પગાર ચૂકવણી (Payroll)", "DBT મારફતે બેંકમાં જમા", "દર માસની ૫ તારીખ સુધીમાં"], ["વાર્ષિક ઓડિટ", "લોકલ ફંડ દ્વારા", "પૂર્ણ થયેલ"]] },
+    p1_6: { desc: "શાળામાં શિક્ષકોના સ્થાયીકરણ માટે સાનુકૂળ વાતાવરણ પૂરું પાડવામાં આવે છે, જેના પરિણામે સ્ટાફની ફેરબદલી નહિવત છે.", th: ["વિગત", "સંખ્યા", "નોંધ"], tr: [["ગત વર્ષે કાર્યરત કુલ સ્ટાફ", "૦૫", "૧૦૦% સ્થાયીકરણ"], ["નવા જોડાયેલ / બદલી થઈ આવેલ", "૦૦", "-"]] },
+    p1_7: { desc: "શાળામાં શ્રેષ્ઠ કામગીરી કરનાર અને ૧૦૦% પરિણામ લાવનાર શિક્ષકોને વાર્ષિક ઉત્સવ દરમિયાન સન્માનિત કરવામાં આવે છે.", th: ["શિક્ષકનું નામ", "આપવામાં આવેલ પ્રોત્સાહન/પુરસ્કાર", "આપવાનું કારણ"], tr: [["પ્રજ્ઞેશભાઈ એ. ચૌધરી", "શ્રેષ્ઠ શિક્ષક સન્માન", "૧૦૦% પરિણામ અને નિયમિતતા"]] },
+    p1_8: { desc: "શિક્ષકો કે કર્મચારીઓના કોઈ પણ પ્રશ્નોના નિવારણ માટે શાળામાં આંતરિક સમિતિ કાર્યરત છે, જે સત્વરે ઉકેલ લાવે છે.", th: ["ફરિયાદ / પ્રશ્ન", "રજૂઆત કરનાર", "કરેલ નિવારણ (Action Taken)"], tr: [["સ્માર્ટ ક્લાસમાં નેટવર્ક પ્રોબ્લેમ", "શિક્ષકો", "નવું રાઉટર લગાવ્યું."]] },
+    p1_9: { desc: "શાળાના શૈક્ષણિક અને ભૌતિક વિકાસ માટે આગામી વર્ષના લક્ષ્યાંકો નક્કી કરી શાળા વિકાસ યોજના (SDP) તૈયાર કરવામાં આવેલ છે.", th: ["લક્ષ્યાંક (SDP Goal)", "સમયગાળો", "વર્તમાન સ્થિતિ"], tr: [["FLN 100% સિદ્ધિ", "૧ વર્ષ", "૭૦% પૂર્ણ"], ["લાઇબ્રેરી નવીનીકરણ", "૬ માસ", "કાર્ય પ્રગતિમાં"]] },
+    p1_10:{ desc: "શાળા વિકાસ યોજના અંતર્ગત ગત વર્ષની સરખામણીએ ચાલુ વર્ષે શિક્ષણ પદ્ધતિ અને ભૌતિક સુવિધાઓમાં નોંધપાત્ર ગુણાત્મક સુધારો જોવા મળેલ છે.", th: ["ક્ષેત્ર", "ગત વર્ષની સ્થિતિ", "વર્તમાન વર્ષમાં ગુણાત્મક ફેરફાર"], tr: [["શિક્ષણ પદ્ધતિ", "બોર્ડ વર્ક", "સ્માર્ટ ક્લાસ અને પ્રોજેક્ટરનો ઉપયોગ"]] },
+    p1_11:{ desc: "RTE ના નિયમો મુજબ શાળામાં પારદર્શક રીતે ગ્રામસભા બોલાવી ૫૦% મહિલા અનામત સાથે SMC ની રચના કરવામાં આવેલ છે.", th: ["ક્રમ", "સભ્યનું નામ", "હોદ્દો"], tr: [["૧", "ધારાબેન ચૌધરી", "અધ્યક્ષ"], ["૨", "ગણેશભાઈ ચંદુભાઈ ચૌધરી", "સચિવ (આચાર્ય)"]] },
+    p1_12:{ desc: "SMC સમિતિની બેઠક દર મહિને નિયમિત બોલાવવામાં આવે છે, જેનું રજીસ્ટર સહીઓ સાથે અદ્યતન રાખવામાં આવે છે.", th: ["માસ", "બેઠકની તારીખ", "મુખ્ય ચર્ચાનો મુદ્દો"], tr: [["જૂન", "૧૫/૦૬/૨૦૨૬", "પ્રવેશોત્સવ અને આયોજન"], ["ઓગસ્ટ", "૧૦/૦૮/૨૦૨૬", "૧૫મી ઓગસ્ટની ઉજવણી"]] },
+    p1_13:{ desc: "દરેક મિટિંગ બાદ ચર્ચાયેલા મુદ્દાઓ અને લેવાયેલા નિર્ણયોની મિનિટ્સ બુકમાં વિગતવાર નોંધ કરી તમામ સભ્યોની સહી લેવાય છે.", th: ["તારીખ", "ચર્ચાનો મુદ્દો", "લેવાયેલ નિર્ણય"], tr: [["૧૫/૦૬/૨૦૨૬", "શાળા વિકાસ યોજના", "સર્વાનુમતે મંજૂર કરવામાં આવી."]] },
+    p1_14:{ desc: "ગ્રાન્ટના વપરાશ અને અન્ય આર્થિક નિર્ણયો માટે SMC ની બેઠકમાં સર્વાનુમતે ઠરાવ પસાર કરી ઠરાવ બુકમાં નોંધવામાં આવે છે.", th: ["ઠરાવ નંબર", "તારીખ", "ઠરાવની વિગત"], tr: [["૦૧", "૧૦/૦૮/૨૦૨૬", "રમત-ગમતના નવા સાધનો ખરીદવા બાબત."]] },
+    p1_15:{ desc: "શાળાને મળતી સરકારી ગ્રાન્ટ અને તેના વપરાશની વિગતો દર્શાવતું પારદર્શક ડિસ્પ્લે બોર્ડ શાળાની ઓફિસ બહાર લગાવવામાં આવેલ છે.", th: ["ગ્રાન્ટનું નામ", "વર્ષ", "મળેલ રકમ", "વપરાશની વિગત"], tr: [["SSG ગ્રાન્ટ", "૨૦૨૬-૨૭", "૨૫,૦૦૦", "સ્વચ્છતા અને શૈક્ષણિક સાધનો"]] },
+    p1_16:{ desc: "SMC રજીસ્ટર, મિનિટ્સ બુક અને ઠરાવ બુકના મુખ્ય પાનાઓની વિગત નીચે મુજબ છે.", th: ["રજીસ્ટરનું નામ", "અપડેટ સ્થિતિ", "નિરીક્ષણની નોંધ"], tr: [["મિટિંગ મિનિટ્સ બુક", "અદ્યતન", "સભ્યોની સહી લીધેલ છે."]] },
+    p1_17:{ desc: "શાળાના હિસાબોનું સરકાર માન્ય ઓડિટર / લોકલ ફંડ દ્વારા વાર્ષિક ઓડિટ નિયમિતપણે કરવામાં આવે છે.", th: ["નાણાકીય વર્ષ", "ઓડિટ કરનાર એજન્સી / C.A.", "ઓડિટ પૂર્ણ તારીખ"], tr: [["૨૦૨૫-૨૬", "જિલ્લા લોકલ ફંડ", "૩૦/૦૪/૨૦૨૬"]] },
+    p1_18:{ desc: "આગ લાગવાની ઘટના સમયે રક્ષણ મેળવવા શાળામાં ફાયર એક્સટિંગ્યુશર લગાવવામાં આવેલ છે અને ફાયર NOC મેળવેલ છે.", th: ["સાધન / પ્રમાણપત્ર", "ઉપલબ્ધ સંખ્યા / સ્થિતિ", "માન્યતા (Valid till)"], tr: [["ફાયર એક્સટિંગ્યુશર (બોટલ)", "૦૨", "ડિસેમ્બર ૨૦૨૭"], ["ફાયર NOC", "મંજૂર", "૨૦૨૭"]] },
+    p1_19:{ desc: "વિદ્યાર્થીઓને ઇજા થાય ત્યારે તાત્કાલિક સારવાર માટે ફર્સ્ટ એઈડ બોક્સ અને 108 એમ્બ્યુલન્સ જેવા ઇમરજન્સી નંબરો દીવાલ પર લખેલ છે.", th: ["સેવા / સુવિધા", "વિગત / સંપર્ક નંબર", "સ્થિતિ"], tr: [["ફર્સ્ટ એઈડ બોક્સ", "તમામ સાધનો ઉપલબ્ધ", "અપડેટેડ"], ["108 એમ્બ્યુલન્સ / PHC", "108 / ૦૨૭૬૨-૨૦૦૦૦૦", "બોર્ડ પર લખેલ છે"]] },
+    p1_20:{ desc: "શાળાના તમામ વર્ગખંડોમાં પંખા અને ટ્યુબલાઈટની સુવિધા છે. વાયરીંગ કન્સીલ્ડ હોવાથી બાળકો માટે સંપૂર્ણ સુરક્ષિત છે.", th: ["ઓરડાની વિગત", "પંખા / ટ્યુબલાઈટની સંખ્યા", "વાયરીંગ અને બોર્ડની સ્થિતિ"], tr: [["વર્ગખંડ - ૧", "૨ પંખા, ૨ ટ્યુબલાઈટ", "સુરક્ષિત (કન્સીલ્ડ)"]] },
+    p1_21:{ desc: "શાળાની સુરક્ષા અને શિસ્ત માટે સમગ્ર કેમ્પસ અને વર્ગખંડોમાં CCTV કેમેરા લગાવવામાં આવેલ છે.", th: ["કુલ લગાવેલા કેમેરા", "ચાલુ સ્થિતિમાં (Working)", "કંટ્રોલ રૂમ / DVR નું સ્થાન"], tr: [["૦૮", "૦૮", "આચાર્યશ્રીની ઓફિસ"]] },
+    p1_22:{ desc: "આપત્તિના સમયે બહાર નીકળવાના રસ્તાઓ (Exit Route) દર્શાવતો નકશો શાળાના મુખ્ય નોટિસ બોર્ડ પર પ્રદર્શિત કરેલ છે.", th: ["આપત્તિ વ્યવસ્થાપન પ્લાન", "પ્રદર્શિત કરેલ સ્થાન", "અપડેટની તારીખ"], tr: [["શાળાનો નકશો અને એક્ઝિટ રૂટ", "મુખ્ય નોટિસ બોર્ડ", "જુલાઈ ૨૦૨૬"]] },
+    p1_23:{ desc: "વિદ્યાર્થીઓને ભૂકંપ અને આગ જેવી આપત્તિ સમયે બચાવની તાલીમ આપવા માટે દર વર્ષે મોકડ્રીલનું આયોજન થાય છે.", th: ["મોકડ્રીલનો વિષય", "તારીખ", "માર્ગદર્શક ટીમ"], tr: [["ભૂકંપ અને આગ સમયે બચાવ", "૧૨/૦૭/૨૦૨૬", "સ્થાનિક ફાયર બ્રિગેડ"]] },
+    p1_24:{ desc: "વિદ્યાર્થીઓ અને વાલીઓના મંતવ્યો જાણવા માટે શાળામાં સૂચન પેટી રાખવામાં આવેલ છે, જેના આધારે જરૂરી સુધારા થાય છે.", th: ["પ્રતિભાવ લેવાનું માધ્યમ", "લક્ષિત જૂથ", "કરેલ સુધારો (Action Taken)"], tr: [["સૂચન પેટી", "વિદ્યાર્થીઓ", "પીવાના પાણીનું કૂલર સાફ કરાવ્યું."]] },
+    p1_25:{ desc: "વિદ્યાર્થીઓના શારીરિક વિકાસ માટે વોલીબોલ, ક્રિકેટ અને ઇન્ડોર ગેમ્સના પૂરતા સાધનો રમત-ગમત રૂમમાં ઉપલબ્ધ છે.", th: ["રમતગમત સાધનનું નામ", "ઉપલબ્ધ જથ્થો", "સ્થિતિ"], tr: [["વોલીબોલ / ક્રિકેટ કીટ", "૦૩ / ૦૨", "વપરાશ યોગ્ય"]] },
+    p1_26:{ desc: "દિવ્યાંગ બાળકો સરળતાથી હરી-ફરી શકે તે માટે તમામ વર્ગો બહાર રેમ્પ, હેન્ડરેલ અને અલગ શૌચાલયની સુવિધા છે.", th: ["CWSN સુવિધા", "સ્થાન", "સ્થિતિ"], tr: [["રેમ્પ અને હેન્ડરેલ", "તમામ વર્ગખંડ બહાર", "સારી સ્થિતિ"], ["CWSN શૌચાલય", "ટોયલેટ બ્લોક", "કાર્યરત"]] },
+    p1_27:{ desc: "વિદ્યાર્થીઓના વાંચન શોખને વધારવા માટે પુસ્તકાલયમાં ૫૦૦ થી વધુ પુસ્તકો ઉપલબ્ધ છે, જેનું ઇશ્યુ રજીસ્ટર નિભાવવામાં આવે છે.", th: ["પુસ્તકનો પ્રકાર / કેટેગરી", "કુલ પુસ્તકો", "ઇશ્યુ થયેલ / જમા"], tr: [["વાર્તા અને જીવનચરિત્ર", "૨૫૦", "૪૫ ઇશ્યુ / ૨૦૫ જમા"]] },
+    p1_28:{ desc: "સામાન્ય જ્ઞાનમાં વધારો કરવા માટે શાળામાં બાલસૃષ્ટિ અને સફારી જેવા શૈક્ષણિક સામયિકો નિયમિત મંગાવવામાં આવે છે.", th: ["વર્તમાનપત્ર / સામયિકનું નામ", "પ્રકાર (દૈનિક/માસિક)", "લવાજમની સ્થિતિ"], tr: [["સફારી / બાલસૃષ્ટિ", "માસિક", "માર્ચ ૨૦૨૭ સુધી ચાલુ"]] },
+    p1_29:{ desc: "મધ્યાહન ભોજન માટે સ્વચ્છ, હવા-ઉજાસવાળું રસોડું અને વિદ્યાર્થીઓ શાંતિથી જમી શકે તેવો શેડ ઉપલબ્ધ છે.", th: ["સફાઈ કામગીરી", "જવાબદાર વ્યક્તિ", "સમયપત્રક"], tr: [["ડાઇનિંગ એરિયા અને રસોડાની સફાઈ", "MDM સંચાલક / મદદનીશ", "દરરોજ ભોજન પછી"]] },
+    p1_30:{ desc: "બાળકોને ભોજન પીરસતા પહેલા આચાર્યશ્રી કે શિક્ષકો દ્વારા ફરજિયાત ભોજન ચાખવામાં (Tasting) આવે છે અને તેની નોંધ થાય છે.", th: ["તારીખ", "વાનગીનું નામ", "ભોજન ચાખનારનું નામ / પ્રતિભાવ"], tr: [["૧૫/૦૮/૨૦૨૬", "દાળ-ભાત", "આચાર્યશ્રી - ઉત્તમ અને પૌષ્ટિક"]] },
+    p1_31:{ desc: "વિદ્યાર્થીઓને શુદ્ધ અને ઠંડુ પીવાનું પાણી મળી રહે તે માટે RO પ્લાન્ટ અને વોટર કૂલર લગાવવામાં આવેલ છે.", th: ["પીવાના પાણીની સુવિધા", "સંખ્યા / ક્ષમતા", "સ્થિતિ"], tr: [["RO પ્લાન્ટ / વોટર કૂલર", "૦૧", "કાર્યરત"], ["પીવાના પાણીના નળ (Taps)", "૧૦", "ચાલુ"]] },
+    p1_32:{ desc: "પીવાના પાણીની ગુણવત્તા જાળવવા માટે ઓવરહેડ અને અંડરગ્રાઉન્ડ ટાંકીની દર મહિને નિયમિત સફાઈ કરવામાં આવે છે.", th: ["ટાંકીનો પ્રકાર", "સફાઈની તારીખ", "આગામી સફાઈની તારીખ"], tr: [["ભૂગર્ભ અને ઓવરહેડ ટાંકી", "૦૧/૦૮/૨૦૨૬", "૦૧/૦૯/૨૦૨૬"]] },
+    p1_33:{ desc: "શાળામાં કુમાર, કન્યા અને દિવ્યાંગ બાળકો માટે રનિંગ વોટરની સુવિધાવાળા અલગ-અલગ શૌચાલયો કાર્યરત છે.", th: ["શૌચાલય બ્લોક", "કુમાર શૌચાલય", "કન્યા શૌચાલય"], tr: [["સંખ્યા અને સુવિધા", "૦૩ ટોયલેટ, ૦૬ મૂતરડી", "૦૪ ટોયલેટ (ઇન્સિનેરેટર સાથે)"]] },
+    p1_34:{ desc: "તમામ શૌચાલયોમાં નળ, ડોલ-ટમ્બલર અને પાણીની ૧૦૦% ઉપલબ્ધતા છે.", th: ["કેટેગરી", "કુલ શૌચાલય", "રનિંગ વોટર (નળ/પાણી) ની ઉપલબ્ધતા"], tr: [["કુમાર / કન્યા", "૦૭", "હા, ૧૦૦% ઉપલબ્ધ"]] },
+    p1_35:{ desc: "શૌચાલયોની સાફસફાઈ સફાઈકર્મી દ્વારા દરરોજ નિયમિત એસિડ-ફિનાઈલથી કરવામાં આવે છે.", th: ["સફાઈનો સમય", "કામગીરીની વિગત", "નિરીક્ષક સહી"], tr: [["સવારે ૧૦:૦૦ કલાકે", "એસિડ/ફિનાઇલથી સફાઈ", "વર્ગશિક્ષક"]] },
+    p1_36:{ desc: "સ્વચ્છ ભારત અભિયાન અંતર્ગત શાળાના ભીના અને સૂકા કચરાના નિકાલ માટે ડસ્ટબીન અને કમ્પોસ્ટ પીટની વ્યવસ્થા છે.", th: ["કચરાનો પ્રકાર", "કચરાપેટીની વ્યવસ્થા", "નિકાલની પદ્ધતિ"], tr: [["ભીનો અને સૂકો કચરો", "લીલી અને ભૂરી ડસ્ટબીન", "કમ્પોસ્ટ પીટ / પંચાયત વાહન"]] },
+    p1_37:{ desc: "આરોગ્ય વિભાગની ટીમ દ્વારા વાર્ષિક મેડિકલ કેમ્પમાં તમામ બાળકોની તપાસ કરી જરૂરી માર્ગદર્શન પૂરું પાડવામાં આવેલ છે.", th: ["કેમ્પની તારીખ", "તપાસ કરનાર ડોક્ટર/ટીમ", "વધુ સારવાર માટે સંદર્ભિત (Referred)"], tr: [["૧૦/૦૭/૨૦૨૬", "PHC મેડિકલ ટીમ", "૦૪ વિદ્યાર્થીઓ (આંખની સમસ્યા)"]] },
+    p1_38:{ desc: "દિવ્યાંગતાની જાણ માટે વિદ્યાર્થીઓના સ્ક્રિનિંગ અને કરેલ અનુકાર્યની વિગત", th: ["ઓળખાયેલ દિવ્યાંગતાનો પ્રકાર", "વિદ્યાર્થીઓની સંખ્યા", "કરેલ અનુકાર્ય (Follow-up)"], tr: [["અલ્પ દ્રષ્ટિ (Low Vision)", "૦૧", "ચશ્મા માટે સિવિલ હોસ્પિટલ મોકલ્યા"]] },
+
+    p2_1: { desc: "શાળાના શૈક્ષણિક વર્ષ માટે પરીક્ષાઓ, રજાઓ અને સાંસ્કૃતિક પ્રવૃત્તિઓ દર્શાવતું વાર્ષિક કેલેન્ડર તૈયાર કરી અમલમાં મુકાયેલ છે.", th: ["માસ", "આયોજિત કાર્યક્રમ / પ્રવૃત્તિ", "અમલીકરણની તારીખ"], tr: [["ઓગસ્ટ", "સ્વાતંત્ર્ય પર્વ અને વકતૃત્વ સ્પર્ધા", "૧૫/૦૮/૨૦૨૬"]] },
+    p2_2: { desc: "શિક્ષકો દ્વારા વર્ગખંડમાં જતા પહેલા દૈનિક આયોજનપોથી લખવામાં આવે છે, જેમાં આચાર્યશ્રી નિયમિત સહી અને શેરો કરે છે.", th: ["તારીખ", "શિક્ષકનું નામ / વિષય", "આચાર્યશ્રીની નોંધ / પ્રતિભાવ"], tr: [["૨૦/૦૭/૨૦૨૬", "પ્રજ્ઞેશકુમાર એ. ચૌધરી (વિજ્ઞાન)", "TLM નો સારો ઉપયોગ કર્યો."]] },
+    p2_3: { desc: "આચાર્યશ્રી દ્વારા શિક્ષકોના શિક્ષણ કાર્યનું પ્રત્યક્ષ અવલોકન કરી તેમને હકારાત્મક માર્ગદર્શન પૂરું પાડવામાં આવે છે.", th: ["અવલોકન તારીખ", "શિક્ષકનું નામ", "સુધારા માટે સૂચન"], tr: [["૨૨/૦૭/૨૦૨૬", "વિપુલભાઈ એસ. ચૌધરી", "વિદ્યાર્થીઓને વધુ પ્રશ્નો પૂછવા."]] },
+    p2_4: { desc: "આચાર્યશ્રી દ્વારા યાદચ્છિક રીતે પસંદ કરેલા વિદ્યાર્થીઓના વાંચન, લેખન અને ગણનની સ્થિતિ ચકાસી તેની નોંધ લેવામાં આવે છે.", th: ["વિદ્યાર્થીનું નામ", "વિષય", "વાંચન/લેખન/ગણન સ્થિતિ"], tr: [["જેન્સી ચૌધરી (ધોરણ ૪)", "ગુજરાતી", "સળંગ વાંચન કરી શકે છે."]] },
+    p2_5: { desc: "વિદ્યાર્થીઓની હોમવર્કની નોટબુક અને સ્વાધ્યાયપોથીઓનું આચાર્યશ્રી દ્વારા સમયાંતરે ચેકિંગ કરવામાં આવે છે.", th: ["વિદ્યાર્થીનું નામ", "વિષય / પોથીનું નામ", "નોંધ / શેરો"], tr: [["શિવમ એસ. વસાવા (ધોરણ ૬)", "ગણિત પાકી નોટ", "નિયમિત હોમવર્ક કરે છે."]] },
+    p2_6: { desc: "વિદ્યાર્થીઓની સત્રાંત કસોટીની ઉત્તરવહીઓનું મૂલ્યાંકન પારદર્શક રીતે થાય છે અને તેની નકલો રેકોર્ડ પર ઉપલબ્ધ છે.", th: ["વિદ્યાર્થીનું નામ", "વિષય", "મેળવેલ ગુણ / ગ્રેડ"], tr: [["અંશ છત્રસિંહ ચૌધરી  (ધોરણ ૮)", "વિજ્ઞાન", "૪૦/૫૦ (ગ્રેડ A)"]] },
+    p2_7: { desc: "ત્રિમાસિક કસોટીમાં નબળા પરિણામવાળા વિદ્યાર્થીઓ તારવીને તેમને વિશેષ ઉપચારાત્મક શિક્ષણ (Remedial) આપવામાં આવે છે.", th: ["ધોરણ / વિષય", "નબળા પરિણામવાળા વિદ્યાર્થી સંખ્યા", "ઉપચારાત્મક આયોજન"], tr: [["ધોરણ ૬ / ગણિત", "૦૪", "બેઝિક કોન્સેપ્ટ માટે એક્સ્ટ્રા ક્લાસ"]] },
+    p2_8: { desc: "પરીક્ષાના પરિણામ અંગે વાલીઓને માહિતગાર કરવા પેરન્ટ-ટીચર મિટિંગ (PTM) યોજી પ્રગતિ બાબતે ચર્ચા કરવામાં આવે છે.", th: ["બેઠકની તારીખ", "ધોરણ", "મુખ્ય ચર્ચા (પરિણામ બાબતે)"], tr: [["૨૫/૧૦/૨૦૨૬", "ધોરણ ૧ થી ૮", "ત્રિમાસિક કસોટીનું પરિણામ અને ગુણ-દોષ"]] },
+    p2_9: { desc: "પસંદ કરેલ વિદ્યાર્થીઓની ૩ વિષયોની ઉત્તરવહીઓનું સઘન નિરીક્ષણ કરી શિક્ષકોને જરૂરી સૂચના અપાય છે.", th: ["વિદ્યાર્થીનું નામ", "વિષય", "ઉત્તરવહીની વિગત"], tr: [["પાર્થવકુમાર એન. ચૌધરી (ધોરણ ૫)", "પર્યાવરણ", "પ્રશ્નોના જવાબ સમજપૂર્વક લખેલ છે."]] },
+    p2_10:{ desc: "કસોટીના પરિણામની જાણ વાલીઓને વોટ્સએપ ગ્રુપ મારફતે અને રૂબરૂ બોલાવીને કરવામાં આવે છે.", th: ["તારીખ", "લક્ષિત જૂથ", "વાલીની સહી / પ્રતિભાવ"], tr: [["૧૨/૧૧/૨૦૨૬", "ધોરણ ૭ ના વાલીઓ", "બાળકના પ્રદર્શનથી સંતોષ."]] },
+    p2_11:{ desc: "વિદ્યાર્થીઓના સર્વાંગી વિકાસને દર્શાવતું 'Holistic Progress Card (HPC)' તૈયાર કરી વાલીઓને સુપરત કરવામાં આવે છે.", th: ["વિદ્યાર્થીનું નામ", "ધોરણ / સ્ટેજ", "પ્રગતિ પત્રક (HPC) સ્થિતિ"], tr: [["જેન્સીકુમારી સંજયભાઈ ચૌધરી (ધોરણ ૪)", "પ્રિપેરેટરી સ્ટેજ", "HPC સંપૂર્ણ ભરેલ અને વાલીને આપેલ."]] },
+    p2_12:{ desc: "શાળાના અગત્યના નિર્ણયો લોકશાહી ઢબે સ્ટાફ અને SMC ના સભ્યો સાથે પરામર્શ કરીને લેવામાં આવે છે.", th: ["નિર્ણય લેવાયેલ તારીખ", "મુખ્ય નિર્ણય (Decision)", "સહભાગી હિતધારક"], tr: [["૧૦/૦૮/૨૦૨૬", "સ્વચ્છતા અભિયાન અને ડસ્ટબીન ખરીદી", "SMC અને સ્ટાફ"]] },
+    p2_13:{ desc: "શાળાના શૈક્ષણિક આયોજન અને પરીક્ષાની પૂર્વતૈયારી માટે દર મહિને સ્ટાફ મિટિંગ યોજવામાં આવે છે.", th: ["મીટીંગ તારીખ", "એજન્ડા / ચર્ચાના મુદ્દા", "લીધેલ નિર્ણયો"], tr: [["૧૫/૦૯/૨૦૨૬", "પ્રથમ સત્રાંત પરીક્ષા તૈયારી", "પેપર સેટિંગ ડ્યુટી નક્કી કરી."]] },
+    p2_14:{ desc: "શાળાની વિવિધ પ્રવૃત્તિઓનું સંચાલન સરળ બને તે માટે શિક્ષકો વચ્ચે શિસ્ત, રમતગમત અને સાંસ્કૃતિક સમિતિની વહેંચણી કરાય છે.", th: ["શિક્ષકનું નામ", "સોંપાયેલ વિશેષ કામગીરી / સમિતિ", "નોંધ"], tr: [["જિજ્ઞેશકુમાર આર. ચૌધરી", "રમતગમત અને શિસ્ત સમિતિ ઇન્ચાર્જ", "વાર્ષિક આયોજન મુજબ"]] },
+    p2_15:{ desc: "શિક્ષકોને અદ્યતન શૈક્ષણિક પદ્ધતિઓથી માહિતગાર કરવા DIKSHA અને NISHTHA તાલીમ પૂર્ણ કરાવવામાં આવેલ છે.", th: ["શિક્ષકનું નામ", "પૂર્ણ કરેલ તાલીમ (Nishtha / Diksha)", "તાલીમનો સમયગાળો"], tr: [["તમામ શિક્ષકો", "FLN / નિષ્ઠા ઓનલાઇન કોર્સ", "૨૦૨૫-૨૬"]] },
+    p2_16:{ desc: "શિક્ષકોના વ્યાવસાયિક વિકાસ માટે તેમને CRC/BRC કક્ષાના સેમિનાર અને વર્કશોપમાં ભાગ લેવા પ્રોત્સાહિત કરાય છે.", th: ["શિક્ષકનું નામ", "પ્રવૃત્તિ (વર્કશોપ/સેમિનાર)", "તારીખ / વર્ષ"], tr: [["પ્રજ્ઞેશકુમાર એ. ચૌધરી", "શૈક્ષણિક ઈનોવેશન ફેસ્ટિવલ", "જાન્યુઆરી ૨૦૨૬"]] },
+    p2_17:{ desc: "વિદ્યાર્થીઓના બોજ વગરના શિક્ષણ માટે કમ્પ્યુટર, રમત-ગમત અને લાઈબ્રેરીના તાસ સાથેનું માસ્ટર સમયપત્રક અમલમાં છે.", th: ["ધોરણ", "ફાળવેલ તાસ", "વિશેષ બાબત"], tr: [["ધોરણ ૬ થી ૮", "માસ્ટર ટાઈમટેબલ મુજબ", "કમ્પ્યુટર અને રમતગમતના તાસ સામેલ"]] },
+    p2_18:{ desc: "૧૫મી ઓગસ્ટ, વાર્ષિક ઉત્સવ અને નવરાત્રી જેવા કાર્યક્રમોમાં SMC અને ગામના વાલીઓનો આર્થિક અને શારીરિક સહયોગ મળે છે.", th: ["કાર્યક્રમનું નામ", "તારીખ", "SMC / વાલીઓનો સહયોગ"], tr: [["નવરાત્રી (ગરબા મહોત્સવ)", "ઓક્ટોબર ૨૦૨૬", "સાઉન્ડ સિસ્ટમ અને પ્રસાદની વ્યવસ્થા."]] },
+    p2_19:{ desc: "વાલીઓ દ્વારા મળેલા સૂચનોને આવકારીને શાળા વ્યવસ્થાપન દ્વારા હકારાત્મક પગલાં ભરવામાં આવે છે.", th: ["SMC / વાલીઓનો પ્રતિભાવ / સૂચન", "શાળા દ્વારા લેવાયેલ પગલાં (Action Taken)", "પરિણામ"], tr: [["ગણિત વિષયમાં બાળકોનું પરિણામ સુધારવું.", "શાળા છૂટ્યા પછી વધારાનો તાસ શરૂ કર્યો.", "સુધારો જોવા મળ્યો."]] },
+    p2_20:{ desc: "વિદ્યાર્થીઓને પુસ્તકિયા જ્ઞાન ઉપરાંત વ્યાવસાયિક કૌશલ્યો મળે તે માટે સ્થાનિક કારીગરો અને તજજ્ઞોનો લાભ અપાય છે.", th: ["કૌશલ્ય પ્રવૃત્તિનો વિષય", "સ્થાનિક તજજ્ઞ / સમુદાય વ્યક્તિનું નામ", "લાભાર્થી વિદ્યાર્થીઓ"], tr: [["યોગ અને સ્વાસ્થ્ય શિબિર", "પતંજલિ યોગ સમિતિના સભ્યો", "તમામ વિદ્યાર્થીઓ"]] },
+    p2_21:{ desc: "રોજ સવારે પ્રાર્થના સભામાં ધૂન, સમાચાર વાચન, સુવિચાર અને ક્વિઝ જેવી પ્રવૃત્તિઓ વર્ગ વાઇઝ યોજવામાં આવે છે.", th: ["વાર", "સંચાલન કરનાર વર્ગ", "વિશેષ પ્રવૃત્તિ"], tr: [["સોમવાર", "ધોરણ ૮", "વિજ્ઞાનની રોચક વાતો અને ક્વિઝ"]] },
+    p2_22:{ desc: "બાળકોમાં સર્જનાત્મકતા ખીલે તે હેતુથી ચિત્રકામ, માટીકામ અને હસ્તકલા (Craft) ની સ્પર્ધાઓ નિયમિત યોજવામાં આવે છે.", th: ["માસ / તારીખ", "કલા પ્રવૃત્તિનું નામ", "ભાગ લેનાર ધોરણ"], tr: [["ઓગસ્ટ ૨૦૨૬", "રાખડી મેકિંગ અને ગ્રીટિંગ કાર્ડ બનાવટ", "બાલવાટિકા થી ધોરણ ૮"]] },
+    p2_23:{ desc: "CRC અને BRC કક્ષાએ યોજાતા કલા ઉત્સવમાં શાળાના વિદ્યાર્થીઓ ઉત્સાહભેર ભાગ લઈ ઇનામો પ્રાપ્ત કરે છે.", th: ["વિદ્યાર્થીનું નામ", "સ્પર્ધા (ચિત્ર/સંગીત/નૃત્ય)", "પરિણામ / ક્રમ"], tr: [["પ્રજાપતિ રોહન એમ.", "ચિત્રકળા સ્પર્ધા (BRC કક્ષા)", "પ્રથમ ક્રમ"]] },
+    p2_24:{ desc: "આંતરરાષ્ટ્રીય યોગ દિવસની ભવ્ય ઉજવણી તેમજ શનિવારના રોજ નિયમિત ધ્યાન અને યોગાભ્યાસ કરાવવામાં આવે છે.", th: ["કાર્યક્રમ / દિવસ", "મુખ્ય આસનો / પ્રવૃત્તિ", "ભાગ લેનાર વિદ્યાર્થીઓ"], tr: [["૨૧ જૂન - આંતરરાષ્ટ્રીય યોગ દિવસ", "સૂર્ય નમસ્કાર, અનુલોમ-વિલોમ", "સમગ્ર શાળા (૧૦૦%)"]] },
+    p2_25:{ desc: "ખેલ મહાકુંભ અને અન્ય રમત-ગમત સ્પર્ધાઓમાં શાળાની કબડ્ડી અને ખો-ખોની ટીમ શ્રેષ્ઠ પ્રદર્શન કરે છે.", th: ["વિદ્યાર્થી / ટીમનું નામ", "રમતનું નામ / કક્ષા", "પરિણામ / ક્રમ"], tr: [["શાળાની ખો-ખો ટીમ (અંડર-૧૪)", "ખો-ખો (તાલુકા કક્ષા)", "દ્વિતીય ક્રમ (વિજેતા)"]] },
+    p2_26:{ desc: "બાળકોમાં વૈજ્ઞાનિક અભિગમ કેળવાય તે માટે CRC અને તાલુકા કક્ષાના વિજ્ઞાન મેળામાં શ્રેષ્ઠ કૃતિઓ રજૂ કરવામાં આવે છે.", th: ["બાળવૈજ્ઞાનિકના નામ", "કૃતિ / મોડલનું નામ", "પરિણામ"], tr: [["દર્શિલ ચૌધરી અને આર્યનકુમાર ચૌધરી", "હાઈડ્રોપોનોક્સ મોડલ", "CRC કક્ષાએ પ્રથમ ક્રમ"]] },
+    p2_27:{ desc: "ઇકો-ક્લબ અંતર્ગત શાળામાં વૃક્ષારોપણ, સ્વચ્છતા રેલી અને પર્યાવરણ જાગૃતિના કાર્યક્રમો સફળતાપૂર્વક યોજવામાં આવેલ છે.", th: ["તારીખ", "પ્રવૃત્તિનું નામ", "ભાગ લેનાર વિદ્યાર્થીઓ"], tr: [["૦૫/૦૬/૨૦૨૬", "વિશ્વ પર્યાવરણ દિવસ - વૃક્ષારોપણ", "ઇકો-ક્લબના સભ્યો (૫૦ વિદ્યાર્થીઓ)"]] },
+    p2_28:{ desc: "રાષ્ટ્રીય પર્વો, ગાંધી જયંતી અને શિક્ષક દિન જેવા તહેવારોની વિદ્યાર્થીઓની ભાગીદારી સાથે ભવ્ય ઉજવણી કરવામાં આવે છે.", th: ["દિનવિશેષ / તહેવાર", "ઉજવણીની તારીખ", "યોજાયેલ પ્રવૃત્તિ / વિદ્યાર્થી ભાગીદારી"], tr: [["શિક્ષક દિન (૫ સપ્ટેમ્બર)", "૦૫/૦૯/૨૦૨૬", "વિદ્યાર્થીઓ દ્વારા સ્વયં શિક્ષક બની શિક્ષણ કાર્ય"]] },
+    p2_29:{ desc: "દર શનિવારે ભણતરના ભાર વિના આનંદદાયી શનિવાર અંતર્ગત રમત-ગમત, બાળ ફિલ્મ અને સાંસ્કૃતિક કાર્યક્રમો યોજાય છે.", th: ["શનિવારનો ક્રમ", "યોજાયેલ પ્રવૃત્તિ", "ભાગ લેનાર ધોરણ"], tr: [["પ્રથમ શનિવાર", "રમત-ગમત અને પી.ટી. સ્પર્ધાઓ", "ધોરણ ૧ થી ૮"]] },
+    p2_30:{ desc: "દફતર વિનાના 10 દિવસ (Bagless Days) સંબંધિત પ્રવૃત્તિઓનો અહેવાલ", th: ["તારીખ / માસ", "વિશેષ પ્રવૃત્તિઓ / ફિલ્ડ ટ્રીપ", "ધોરણ"], tr: [["૧૦ થી ૧૨ સપ્ટેમ્બર ૨૦૨૬", "સ્થાનિક બેંક અને પોસ્ટ ઓફિસની મુલાકાત", "ધોરણ ૬ થી ૮"]] },
+    p2_31:{ desc: "વિદ્યાર્થીઓમાં નેતૃત્વના ગુણો વિકસે તે માટે બાલસંસદની ચૂંટણી યોજી વિવિધ મંત્રીઓ અને વર્ગ મોનિટરની નિમણૂક કરવામાં આવેલ છે.", th: ["વિદ્યાર્થીનું નામ", "ધોરણ", "સોંપાયેલ હોદ્દો / સમિતિ"], tr: [["ટ્વિંકલકુમારી ચૌધરી.", "ધોરણ ૮", "સ્વચ્છતા અને આરોગ્ય મંત્રી (બાલસંસદ)"]] },
+    p2_32:{ desc: "પુસ્તકાલયનો મહત્તમ ઉપયોગ થાય તે માટે વિદ્યાર્થીઓને નિયમિત પુસ્તકો ઇશ્યુ કરી તેનું રેકોર્ડ નિભાવવામાં આવે છે.", th: ["તારીખ", "પુસ્તકનું નામ / નંબર", "ઇશ્યૂ કરાવનાર વિદ્યાર્થી"], tr: [["૦૧/૦૮/૨૦૨૬", "ઉર્મિકુમારી એચ. ચૌધરી (નંબર-૧૨)", "શ્રેયાંશી ચૌધરી (ધો. ૫)"]] },
+    p2_33:{ desc: "શાળાના શિક્ષકો દ્વારા શૈક્ષણિક, ઐતિહાસિક અને પ્રેરણાદાયક પુસ્તકોનું વાંચન કરી વર્ગખંડમાં તેની ચર્ચા કરવામાં આવે છે.", th: ["શિક્ષકનું નામ", "વંચાયેલ પુસ્તકોની સંખ્યા", "વિશેષ નોંધ (નવા વિચારનો વર્ગમાં પ્રયોગ)"], tr: [["ગણેશભાઈ સી. ચૌધરી", "૦૫", "શિક્ષણની નવી પદ્ધતિઓનો વર્ગમાં અમલ કર્યો."]] },
+    p2_34:{ desc: "વાંચન અભિયાન અંતર્ગત શાળામાં પુસ્તક મેળો, વાર્તા કથન અને પુસ્તક સમીક્ષા સ્પર્ધાનું આયોજન કરવામાં આવેલ છે.", th: ["પ્રવૃત્તિનું નામ", "યોજાયેલ માસ", "લાભાર્થી વિદ્યાર્થીઓ"], tr: [["વાર્તા કથન અને પુસ્તક સમીક્ષા સ્પર્ધા", "ઓગસ્ટ ૨૦૨૬", "ધોરણ ૬ થી ૮ ના વિદ્યાર્થીઓ"]] },
+    p2_35:{ desc: "મધ્યાહન ભોજન લેતા પહેલા અને પછી તમામ વિદ્યાર્થીઓ ફરજિયાતપણે સાબુથી હાથ ધુએ તેની તકેદારી રાખવામાં આવે છે.", th: ["સુવિધા / પ્રયાસ", "વિગત", "અમલીકરણ"], tr: [["હેન્ડવોશ સ્ટેશન", "સાબુ/લિક્વિડથી હાથ ધોવડાવવા", "દરરોજ ભોજન પહેલાં અને પછી"]] },
+    p2_36:{ desc: "બાળકો જંકફૂડ ટાળે અને પૌષ્ટિક આહાર લે તે માટે વર્ગમાં જાગૃતિ અપાય છે તથા નખ-વાળની સાપ્તાહિક ચકાસણી થાય છે.", th: ["ચકાસણીનો મુદ્દો", "જવાબદારી", "આરોગ્યપ્રદ આહાર જાગૃતિ"], tr: [["નખ, સ્વચ્છ ગણવેશ અને વાળ", "વર્ગ શિક્ષક (દર શનિવારે)", "જંકફૂડ ન ખાવા અંગે વર્ગમાં ચર્ચા"]] }
+  };
+
+  let currentPart = 1;
+  let currentItem = dbPart1[0];
+  let autoSaveTimer;
+
+  let tblFontSize = 14.5;
+  let isTblBold = true;
+  let infoFontSize = 13.5;
+  let isInfoBold = true;
+
+  window.changeGlobalFont = function(font) {
+      document.body.style.fontFamily = font;
+      localStorage.setItem('gunotsav_global_font', font);
+  }
+
+  function createPhotoSlotHtml(slotKey, labelText, defaultText, isFullWidth) {
+    return `
+      <div class="photo-slot-card ${isFullWidth ? 'full-width' : ''}" id="card_${slotKey}">
+        <div class="btn-remove-slot no-print" onclick="removePhotoSlot('${slotKey}')" title="કાઢી નાખો">✕</div>
+        <button class="btn-action no-print" style="position:absolute; top:25px; right:-10px; z-index:10; background:#3b82f6; border-radius:50%; width:26px; height:26px; padding:0; display:flex; align-items:center; justify-content:center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);" onclick="togglePhotoWidth('${slotKey}')" title="સાઇઝ બદલો">↔</button>
+        
+        <div class="photo-display-box" id="box_${slotKey}">
+          <div style="font-weight:bold; color:#475569;">${defaultText}</div>
+        </div>
+        <div style="font-size:13px; font-weight:700; margin-bottom:6px;">
+          <div class="tbl-input" contenteditable="true" style="text-align:center; border:none; background:transparent;">${labelText}</div>
+        </div>
+        <input type="file" id="inp_slotKey"accept="image/*"style="display:none;"onchange="handleSlotImageUpload(event,'{slotKey}')">
+        <button class="btn-slot-upload no-print" onclick="document.getElementById('inp_${slotKey}').click()">📷 ફોટો અપલોડ કરો</button>
+      </div>`;
+  }
+
+  // Point 2: Insert Heading and Input Box together
+window.addCustomHeading = function(btn) {
+      const headingHTML = `
+      <div class="custom-heading-wrapper" style="border: 1.5px solid var(--border-color); padding: 10px; border-radius: 6px; background:#fafafa; margin-top: 15px; page-break-inside: avoid; break-inside: avoid;">
+          <!-- A+, A-, B ફોન્ટ કંટ્રોલ -->
+          <div class="no-print" style="display:flex; gap:5px; margin-bottom:8px; align-items:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              <span style="font-size:11px; font-weight:bold; color:#475569;">શિર્ષક અક્ષરો:</span>
+              <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="changeLocalFont(this, 1)">A+</button>
+              <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="changeLocalFont(this, -1)">A-</button>
+              <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="toggleLocalBold(this)"><b>B</b></button>
+              <button class="btn-remove-slot no-print" style="position:static; margin-left:auto; width:auto; height:auto; border-radius:4px; padding:4px 8px; font-size:12px; border:none;" onclick="this.closest('.custom-heading-wrapper').remove(); triggerAutoSave();" title="દૂર કરો">✕ ડિલીટ</button>
+          </div>
+          <div class="section-head custom-sh" contenteditable="true" style="margin-top:0; border-bottom:none;">નવું શિર્ષક અહીં લખો...</div>
+          <div class="desc-textarea custom-ta" contenteditable="true">માહિતી અહીં લખો...</div>
+      </div>`;
+      
+      const tableContainer = document.querySelector('.table-container');
+      if(tableContainer) {
+          tableContainer.insertAdjacentHTML('beforebegin', headingHTML);
+      } else {
+          btn.parentElement.insertAdjacentHTML('afterend', headingHTML);
+      }
+      triggerAutoSave();
+  }
+
+  // નવા ઉમેરવાના ફંક્શન:
+  window.changeLocalFont = function(btn, step) {
+      const wrapper = btn.closest('.custom-heading-wrapper');
+      const sh = wrapper.querySelector('.custom-sh');
+      const ta = wrapper.querySelector('.custom-ta');
+      let shSize = parseFloat(window.getComputedStyle(sh).fontSize) || 15;
+      let taSize = parseFloat(window.getComputedStyle(ta).fontSize) || 14;
+      sh.style.fontSize = (shSize + step) + 'px';
+      ta.style.fontSize = (taSize + step) + 'px';
+      triggerAutoSave();
+  };
+
+  window.toggleLocalBold = function(btn) {
+      const wrapper = btn.closest('.custom-heading-wrapper');
+      const ta = wrapper.querySelector('.custom-ta');
+      let currentWeight = window.getComputedStyle(ta).fontWeight;
+      ta.style.fontWeight = (currentWeight === '700' || currentWeight === 'bold') ? '400' : '700';
+      triggerAutoSave();
+  };
+
+  window.toggleSidebar = function() {
+      document.querySelector('.sidebar').classList.toggle('hidden');
+  };
+
+    window.generateSinglePDF = async function() {
+      alert("વર્તમાન પેજની PDF ડાઉનલોડ શરૂ થશે. કૃપા કરીને રાહ જુઓ...");
+      
+      // ફોન્ટ સંપૂર્ણ લોડ થવાની રાહ જુઓ જેથી લખાણ વિખેરાય નહીં
+      await document.fonts.ready; 
+      
+      const element = document.getElementById('printableSheet');
+      
+      let words = currentItem.title.split(' ').slice(0, 3).join('_');
+      words = words.replace(/[\/\\:*?"<>|]/g, '');
+      const filename = `PART${currentPart}_${words}_Single.pdf`;
+
+      const opt = {
+        margin:       [5, 0, 5, 0],
+        filename:     filename,
+        image:        { type: 'jpeg', quality: 1.0 },
+        html2canvas:  { 
+            scale: 2, 
+            useCORS: true, 
+            windowWidth: 1024,
+            letterRendering: false // ગુજરાતી જોડાક્ષરો તૂટતા અટકાવવા
+        },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      await html2pdf().set(opt).from(element).save();
+      alert("PDF ડાઉનલોડ પૂર્ણ થઈ ગઈ છે!");
+  };
+
+
+
+
+  // Point 3: Insert Table above the Pink Strip
+  window.addNewTable = function() {
+    const tableHTML = `
+    <div class="table-container" style="margin-bottom:15px; overflow-x: auto;">
+      <div class="tbl-controls no-print">
+        <div style="margin-right:auto; display:flex; gap:5px; align-items:center;">
+          <span style="font-size:11px; font-weight:bold; color:#475569;">ટેબલના અક્ષરો:</span>
+          <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="changeTableFont(1)">A+</button>
+          <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="changeTableFont(-1)">A-</button>
+          <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="toggleTableBold()"><b>B</b></button>
+        </div>
+        <button class="btn-action" style="background:#ef4444;" onclick="deleteTable(this)">🗑️ ટેબલ ડિલીટ</button>
+        <button class="btn-action btn-danger" onclick="deleteLastColumn(this)">- કોલમ</button>
+        <button class="btn-action btn-primary" onclick="addNewColumn(this)">+ કોલમ</button>
+        <button class="btn-action btn-danger" onclick="deleteLastRow(this)">- રૉ</button>
+        <button class="btn-action btn-primary" onclick="addNewRow(this)">+ રૉ</button>
+      </div>
+      <table class="official-table">
+        <thead><tr><th><div class="tbl-input" contenteditable="true">નવું ટાઇટલ</div></th></tr></thead>
+        <tbody><tr><td><div class="tbl-input" contenteditable="true">માહિતી...</div></td></tr></tbody>
+      </table>
+    </div>`;
+    
+    const pinkNote = document.getElementById('pinkNoteStrip');
+    if(pinkNote) {
+        pinkNote.insertAdjacentHTML('beforebegin', tableHTML);
+    } else {
+        document.getElementById('docEditableBody').insertAdjacentHTML('beforeend', tableHTML);
+    }
+    triggerAutoSave();
+  };
+
+  function getTemplateHTML(item, part) {
+    const key = `p${part}_${item.id}`;
+    // Point 1 & 3: Default data loading
+    const data = dummyData[key] || { desc: "આધાર પુરાવાની વિગત", th: ["ક્રમ","વિગત","સ્થિતિ"], tr:[["૧","માહિતી","નોંધ"]] };
+
+    let ths = "";
+    data.th.forEach(text => { ths += `<th><div class="tbl-input" contenteditable="true">${text}</div></th>`; });
+
+    let trs = "";
+    data.tr.forEach((row) => {
+      trs += "<tr>";
+      row.forEach((cellText, cellIndex) => {
+        if(cellIndex === 0 && !isNaN(parseInt(cellText))) {
+           trs += `<td>${cellText}</td>`;
+        } else {
+           trs += `<td><div class="tbl-input" contenteditable="true">${cellText}</div></td>`;
+        }
+      });
+      trs += "</tr>";
+    });
+
+    let photoSlots = createPhotoSlotHtml('slot_' + part + '_' + item.id + '_1', 'આધાર-પુરાવાનો ફોટો (ફરજિયાત)', '[ અહી ફોટો અપલોડ કરો ]', true);
+    
+    return `
+<div class="custom-heading-wrapper" style="margin-top: 0; padding: 0; border: none; background: transparent;">
+  <div class="no-print" style="display:flex; gap:5px; margin-bottom:8px; align-items:center;">
+      <span style="font-size:11px; font-weight:bold; color:#475569;">શિર્ષક અક્ષરો:</span>
+      <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="changeLocalFont(this, 1)">A+</button>
+      <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="changeLocalFont(this, -1)">A-</button>
+      <button class="btn-action" style="background:#475569; padding:2px 6px;" onclick="toggleLocalBold(this)"><b>B</b></button>
+      <button class="btn-action no-print" style="margin-left:auto; background:#4f46e5; padding:4px 8px;" onclick="addCustomHeading(this)">+ નવું શિર્ષક ઉમેરો</button>
+  </div>
+  <div class="section-head custom-sh" contenteditable="true" style="margin-top:0;">(02) આધાર-પુરાવાની વિગત :</div>
+  <div class="desc-textarea custom-ta" contenteditable="true">${data.desc}</div>
+</div>
+
+
+<div class="table-container" style="margin-top:15px;">
+  <div class="tbl-controls no-print">
+    <div style="margin-right:auto; display:flex; gap:5px; align-items:center;">
+      <span style="font-size:11px; font-weight:bold; color:#475569;">ટેબલના અક્ષરો:</span>
+      <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="changeTableFont(1)">A+</button>
+      <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="changeTableFont(-1)">A-</button>
+      <button class="btn-action" style="background:#475569; padding:4px 8px;" onclick="toggleTableBold()"><b>B</b></button>
+    </div>
+    <button class="btn-action" style="background:#ef4444;" onclick="deleteTable(this)">🗑️ ટેબલ ડિલીટ</button>
+    <button class="btn-action btn-danger" onclick="deleteLastColumn(this)">- કોલમ</button>
+    <button class="btn-action btn-primary" onclick="addNewColumn(this)">+ કોલમ</button>
+    <button class="btn-action btn-danger" onclick="deleteLastRow(this)">- રૉ</button>
+    <button class="btn-action btn-primary" onclick="addNewRow(this)">+ રૉ</button>
+  </div>
+  
+  <table class="official-table">
+    <thead><tr>${ths}</tr></thead>
+    <tbody>${trs}</tbody>
+  </table>
+</div>
+
+<div class="no-print" style="text-align:center; margin-top:20px; margin-bottom:20px;">
+  <button class="btn-action btn-add-table" onclick="addNewTable()">+ આખું નવું ટેબલ ઉમેરો</button>
+</div>
+
+<div id="pinkNoteStrip" class="no-print" style="font-size:12.5px; color:#ef4444; font-weight:800; text-align:center; margin-top:20px; background:#fee2e2; padding:6px; border-radius:4px; border:1px solid #fca5a5;">
+  💡 નોંધ: જો આપ કોઈ સ્લોટમાં ફોટો મૂકવા ઈચ્છતા ન હોય, તો ખૂણામાં આપેલા '✕' બટન પર ક્લિક કરીને તે બોક્સ કાઢી નાખો. ફોટાને ડ્રેગ કરીને મોટો-નાનો કરી શકાય છે.
+</div>
+
+<div class="photo-slot-grid" id="photoGridArea">
+  ${photoSlots}
+</div>
+<div class="no-print" style="text-align:center; margin-bottom:15px;">
+   <button class="btn-action" style="background:#3b82f6;" onclick="addExtraPhotoSlot(this)">+ અન્ય ફોટો ઉમેરો</button>
+</div>`;
+  }
+
+  function setPart(p) {
+    currentPart = p;
+    document.getElementById('tab1').classList.toggle('active', p === 1);
+    document.getElementById('tab2').classList.toggle('active', p === 2);
+    document.getElementById('searchInput').value = '';
+    
+    const db = p === 1 ? dbPart1 : dbPart2;
+    currentItem = db[0];
+    renderEvidenceList();
+    loadContent(currentItem);
+  }
+
+  function renderEvidenceList() {
+    const ul = document.getElementById('evidenceUl');
+    ul.innerHTML = '';
+    const db = currentPart === 1 ? dbPart1 : dbPart2;
+    const q = document.getElementById('searchInput').value.toLowerCase();
+
+    db.forEach(item => {
+      if (q && !item.title.toLowerCase().includes(q) && !item.id.toString().includes(q)) return;
+      const li = document.createElement('li');
+      li.className = 'evidence-item' + (item.id === currentItem.id ? ' active' : '');
+      li.innerHTML = `<span class="badge-sr">item.id</span><span>{item.title}</span>`;
+      li.onclick = () => { currentItem = item; renderEvidenceList(); loadContent(item); };
+      ul.appendChild(li);
+    });
+  }
+
+  function filterBySearch() { renderEvidenceList(); }
+
+  function toggleColorMode() { document.body.classList.toggle('colorful-mode'); }
+
+  async function loadContent(item) {
+    document.getElementById('docMainTitle').innerText = item.title;
+    const dbKey = `gunotsav_p currentPart_i {item.id}`;
+
+    try {
+      let savedHtml = await DBSystem.get(dbKey);
+      if (!savedHtml) {
+         const oldData = localStorage.getItem(dbKey);
+         if (oldData) {
+            savedHtml = oldData;
+            await DBSystem.set(dbKey, oldData);
+            localStorage.removeItem(dbKey); 
+         }
+      }
+
+      if (savedHtml) {
+        document.getElementById('docEditableBody').innerHTML = savedHtml;
+      } else {
+        document.getElementById('docEditableBody').innerHTML = getTemplateHTML(item, currentPart);
+      }
+    } catch(e) {
+      document.getElementById('docEditableBody').innerHTML = getTemplateHTML(item, currentPart);
+    }
+  }
+
+  window.triggerAutoSave = function() {
+    clearTimeout(autoSaveTimer);
+    const ind = document.getElementById('saveStatus');
+    ind.style.display = 'inline-block';
+    ind.innerText = '⏳ સેવ થાય છે...';
+    ind.style.color = '#d97706';
+    
+    autoSaveTimer = setTimeout(async () => {
+      const htmlContent = document.getElementById('docEditableBody').innerHTML;
+      try {
+        await DBSystem.set(`gunotsav_p currentPart_i {currentItem.id}`, htmlContent);
+        ind.innerText = '✓ ઓટો સેવ થયેલ';
+        ind.style.color = '#15803d';
+      } catch (e) {
+        ind.innerText = '❌ એરર!';
+        ind.style.color = '#dc2626';
+      }
+      setTimeout(() => { ind.style.display = 'none'; }, 2000);
+    }, 1500); 
+  };
+
+  document.getElementById('mainContentArea').addEventListener('keyup', triggerAutoSave);
+  document.getElementById('docEditableBody').addEventListener('input', triggerAutoSave);
+  document.getElementById('mainContentArea').addEventListener('mouseup', function(e) {
+    if (e.target.classList.contains('photo-display-box')) { triggerAutoSave(); }
+  });
+
+  function saveFontSettings() {
+    const settings = { tblFontSize, isTblBold, infoFontSize, isInfoBold };
+    localStorage.setItem('gunotsav_fonts', JSON.stringify(settings));
+  }
+  
+  function applyFontSettings() {
+    document.documentElement.style.setProperty('--tbl-fs', tblFontSize + 'px');
+    document.documentElement.style.setProperty('--tbl-fw', isTblBold ? '800' : '500');
+    document.documentElement.style.setProperty('--info-fs', infoFontSize + 'px');
+    document.documentElement.style.setProperty('--info-fw', isInfoBold ? '700' : '500');
+  }
+
+  window.changeTableFont = function(step) {
+    tblFontSize += step;
+    if(tblFontSize < 10) tblFontSize = 10;
+    if(tblFontSize > 22) tblFontSize = 22;
+    applyFontSettings();
+    saveFontSettings();
+  };
+  
+  window.toggleTableBold = function() {
+    isTblBold = !isTblBold;
+    applyFontSettings();
+    saveFontSettings();
+  };
+
+  window.changeInfoFont = function(step) {
+    infoFontSize += step;
+    if(infoFontSize < 10) infoFontSize = 10;
+    if(infoFontSize > 22) infoFontSize = 22;
+    applyFontSettings();
+    saveFontSettings();
+  };
+
+  window.toggleInfoBold = function() {
+    isInfoBold = !isInfoBold;
+    applyFontSettings();
+    saveFontSettings();
+  };
+
+  window.addNewRow = function(btn) {
+    const tbody = btn.closest('.table-container').querySelector('tbody');
+    const newRow = tbody.rows[tbody.rows.length - 1].cloneNode(true);
+    newRow.querySelectorAll('.tbl-input').forEach(inp => inp.innerHTML = 'માહિતી...');
+    const firstCell = newRow.querySelector('td');
+    let num = parseInt(firstCell.innerText);
+    if(!isNaN(num)) { firstCell.innerText = num + 1; }
+    tbody.appendChild(newRow);
+    triggerAutoSave();
+  };
+
+  window.deleteLastRow = function(btn) {
+    const tbody = btn.closest('.table-container').querySelector('tbody');
+    if(tbody.rows.length > 1) { tbody.removeChild(tbody.lastElementChild); triggerAutoSave(); } 
+    else { alert("ટેબલમાં ઓછામાં ઓછી ૧ હરોળ હોવી જરૂરી છે."); }
+  };
+
+  window.addNewColumn = function(btn) {
+    const table = btn.closest('.table-container').querySelector('table');
+    const theadTr = table.querySelector('thead tr');
+    const newTh = document.createElement('th');
+    newTh.innerHTML = '<div class="tbl-input" contenteditable="true">નવું ટાઇટલ</div>';
+    theadTr.appendChild(newTh);
+    table.querySelectorAll('tbody tr').forEach(tr => {
+      const newTd = document.createElement('td');
+      newTd.innerHTML = '<div class="tbl-input" contenteditable="true">માહિતી...</div>';
+      tr.appendChild(newTd);
+    });
+    triggerAutoSave();
+  };
+
+  window.deleteLastColumn = function(btn) {
+    const table = btn.closest('.table-container').querySelector('table');
+    const theadTr = table.querySelector('thead tr');
+    if(theadTr.children.length > 1) {
+      theadTr.removeChild(theadTr.lastElementChild);
+      table.querySelectorAll('tbody tr').forEach(tr => tr.removeChild(tr.lastElementChild));
+      triggerAutoSave();
+    } else { alert("ટેબલમાં ઓછામાં ઓછી ૧ કોલમ હોવી જરૂરી છે."); }
+  };
+
+  window.deleteTable = function(btn) {
+    if(confirm('શું તમે ખરેખર આ ટેબલ ડિલીટ કરવા માંગો છો?')) {
+      const tableContainer = btn.closest('.table-container');
+      if(tableContainer) {
+        tableContainer.remove();
+        triggerAutoSave();
+      }
+    }
+  };
+
+  function compressImage(file, maxWidth, callback) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(e) {
+      const img = new Image();
+      img.src = e.target.result;
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        let ratio = maxWidth / img.width;
+        if (ratio > 1) ratio = 1; 
+        canvas.width = img.width * ratio;
+        canvas.height = img.height * ratio;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        callback(canvas.toDataURL('image/jpeg', 0.5)); 
+      };
+    };
+  }
+
+  window.handleSlotImageUpload = function(event, slotKey) {
+    const file = event.target.files[0];
+    if (!file) return;
+    compressImage(file, 400, function(compressedBase64) {
+       document.getElementById('box_' + slotKey).innerHTML = `<img src="${compressedBase64}">`;
+       triggerAutoSave();
+    });
+  };
+
+  window.removePhotoSlot = function(slotKey) {
+    if(confirm('શું તમે આ ફોટો સ્લોટ કાઢી નાખવા માંગો છો?')) {
+      const card = document.getElementById('card_' + slotKey);
+      if(card) {
+        card.style.display = 'none';
+        card.classList.add('deleted'); 
+        triggerAutoSave();
+      }
+    }
+  };
+  
+  window.togglePhotoWidth = function(slotKey) {
+    const card = document.getElementById('card_' + slotKey);
+    if(card) {
+      card.classList.toggle('full-width');
+      triggerAutoSave();
+    }
+  };
+
+  window.addExtraPhotoSlot = function(btn) {
+    const grid = document.getElementById('photoGridArea');
+    const slotKey = 'ext_' + Date.now();
+    const html = createPhotoSlotHtml(slotKey, 'ફોટો વિગત લખો', '[ અહી ફોટો અપલોડ કરો ]', false);
+    if(grid) {
+        grid.insertAdjacentHTML('beforeend', html);
+    } else {
+        document.getElementById('docEditableBody').insertAdjacentHTML('beforeend', `<div class="photo-slot-grid" id="photoGridArea">${html}</div>`);
+    }
+    triggerAutoSave();
+  };
+
+  window.uploadSignature = function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    compressImage(file, 300, function(base64) {
+      localStorage.setItem('gunotsav_sig_img', base64);
+      applySignature();
+    });
+  };
+
+  window.removeSignature = function() {
+    localStorage.removeItem('gunotsav_sig_img');
+    applySignature();
+    document.getElementById('sigUploadInput').value = '';
+  };
+
+  window.resizeSignature = function(val) {
+    localStorage.setItem('gunotsav_sig_size', val);
+    document.getElementById('sigImg').style.width = val + 'px';
+  };
+
+  function applySignature() {
+    const sigData = localStorage.getItem('gunotsav_sig_img');
+    const sigSize = localStorage.getItem('gunotsav_sig_size') || 120;
+    const imgEl = document.getElementById('sigImg');
+    const sliderBox = document.getElementById('sigSliderBox');
+    const removeBtn = document.getElementById('btnRemoveSig');
+    const lineEl = document.getElementById('sigLine');
+    const textEl = document.getElementById('sigTitleText');
+
+    if (sigData) {
+      imgEl.src = sigData;
+      imgEl.style.width = sigSize + 'px';
+      imgEl.style.display = 'inline-block';
+      document.getElementById('sigSizeSlider').value = sigSize;
+      sliderBox.style.display = 'flex';
+      removeBtn.style.display = 'inline-block';
+      lineEl.style.display = 'none';
+      textEl.parentNode.insertBefore(textEl, imgEl);
+    } else {
+      imgEl.style.display = 'none';
+      sliderBox.style.display = 'none';
+      removeBtn.style.display = 'none';
+      lineEl.style.display = 'block';
+    }
+  }
+
+  function validateAndPrint() {
+    const activeSlots = document.querySelectorAll('.photo-slot-card:not(.deleted)');
+    let allValid = true;
+    activeSlots.forEach(card => {
+      if(!card.querySelector('img')) { allValid = false; }
+    });
+    
+    if(!allValid && activeSlots.length > 0) {
+      alert("⚠️ ભૂલ: કૃપા કરીને પ્રિન્ટ કરતા પહેલા તમામ ઉપલબ્ધ સ્લોટમાં ફોટો અપલોડ કરો.\n\n(જો કોઈ સ્લોટમાં ફોટાની જરૂર ન હોય તો તેને '✕' બટન દબાવીને કાઢી નાખો.)");
+      return false;
+    }
+    window.print();
+  }
+
+  // Point 5: Bulk PDF Cancel Mechanism
+  let isPdfCancelled = false;
+  window.cancelBulkPDF = function() {
+      isPdfCancelled = true;
+  };
+
+   window.generateBulkPDF = async function() {
+      const startStr = prompt("કેટલા નંબરથી PDF ડાઉનલોડ કરવી છે? (દા.ત. 1)", "1");
+      if(!startStr) return;
+      const endStr = prompt("કેટલા નંબર સુધી PDF ડાઉનલોડ કરવી છે? (દા.ત. 38)", "38");
+      if(!endStr) return;
+
+      const start = parseInt(startStr);
+      const end = parseInt(endStr);
+      const db = currentPart === 1 ? dbPart1 : dbPart2;
+
+      if(isNaN(start) || isNaN(end) || start > end) {
+          alert("કૃપા કરીને સાચો નંબર દાખલ કરો."); return;
+      }
+
+      isPdfCancelled = false;
+      document.getElementById('pdfProgressModal').style.display = 'block';
+      const originalItem = currentItem;
+
+      // ફોન્ટ સંપૂર્ણ લોડ થવાની રાહ જુઓ
+      await document.fonts.ready;
+
+      for(let i = start; i <= end; i++) {
+          if(isPdfCancelled) {
+              alert("PDF ડાઉનલોડ પ્રક્રિયા રદ કરવામાં આવી છે.");
+              break;
+          }
+
+          document.getElementById('pdfProgressText').innerText = `પેજ: ${i} / ${end}`;
+
+          const item = db.find(d => d.id === i);
+          if(!item) continue;
+
+          await loadContent(item);
+          await new Promise(r => setTimeout(r, 600)); 
+
+          const element = document.getElementById('printableSheet');
+          
+          let words = item.title.split(' ').slice(0, 3).join('_');
+          words = words.replace(/[\/\\:*?"<>|]/g, '');
+          const filename = `PART${currentPart}_${words}_${item.id}.pdf`;
+
+          const opt = {
+            margin:       [5, 0, 5, 0],
+            filename:     filename,
+            image:        { type: 'jpeg', quality: 1.0 },
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true, 
+                windowWidth: 1024,
+                letterRendering: false // ગુજરાતી જોડાક્ષરો તૂટતા અટકાવવા
+            },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+          };
+
+          await html2pdf().set(opt).from(element).save();
+      }
+
+      document.getElementById('pdfProgressModal').style.display = 'none';
+      await loadContent(originalItem);
+      if(!isPdfCancelled) {
+         alert("તમામ પસંદ કરેલ PDF ડાઉનલોડ પૂર્ણ થઈ ગઈ છે!");
+      }
+  };
+
+
+  // Point 4: Date Format Logic (dd/mm/yyyy)
+  function updateProfileInfo() {
+    document.getElementById('lblSchoolName').innerText = document.getElementById('schoolNameInput').value;
+    document.getElementById('lblUdise').innerText = document.getElementById('diseInput').value;
+    document.getElementById('lblVillage').innerText = document.getElementById('villageInput').value;
+    document.getElementById('lblStd').innerText = document.getElementById('stdInput').value;
+    document.getElementById('lblYear').innerText = document.getElementById('yearInput').value;
+    document.getElementById('lblPrincipal').innerText = document.getElementById('principalInput').value;
+    
+    document.getElementById('lblPlaceFooter').innerText = document.getElementById('placeInput').value;
+    
+    // Convert YYYY-MM-DD to DD/MM/YYYY
+    const dateVal = document.getElementById('dateInput').value;
+    if(dateVal) {
+        const parts = dateVal.split('-');
+        if(parts.length === 3) {
+            document.getElementById('lblDateFooter').innerText = `parts[2]/{parts[1]}/${parts[0]}`;
+        } else {
+            document.getElementById('lblDateFooter').innerText = dateVal;
+        }
+    } else {
+        document.getElementById('lblDateFooter').innerText = "____/____/૨૦૨૬";
+    }
+    
+    const profile = {
+      name: document.getElementById('schoolNameInput').value,
+      dise: document.getElementById('diseInput').value,
+      village: document.getElementById('villageInput').value,
+      std: document.getElementById('stdInput').value,
+      year: document.getElementById('yearInput').value,
+      prin: document.getElementById('principalInput').value,
+      place: document.getElementById('placeInput').value,
+      date: document.getElementById('dateInput').value
+    };
+    localStorage.setItem('gunotsav_profile', JSON.stringify(profile));
+  }
+
+  window.onload = function() {
+    const savedGlobalFont = localStorage.getItem('gunotsav_global_font');
+    if(savedGlobalFont) {
+        document.body.style.fontFamily = savedGlobalFont;
+        document.getElementById('fontSelector').value = savedGlobalFont;
+    }
+
+    const savedFonts = JSON.parse(localStorage.getItem('gunotsav_fonts'));
+    if(savedFonts) {
+      tblFontSize = savedFonts.tblFontSize || 14.5;
+      isTblBold = savedFonts.isTblBold !== undefined ? savedFonts.isTblBold : true;
+      infoFontSize = savedFonts.infoFontSize || 13.5;
+      isInfoBold = savedFonts.isInfoBold !== undefined ? savedFonts.isInfoBold : true;
+      applyFontSettings();
+    }
+
+    const savedProf = JSON.parse(localStorage.getItem('gunotsav_profile'));
+    if(savedProf) {
+      document.getElementById('schoolNameInput').value = savedProf.name || "અંત્રોલી પ્રાથમિક શાળા,";
+      document.getElementById('diseInput').value = savedProf.dise || "24220509001";
+      document.getElementById('villageInput').value = savedProf.village || "અંત્રોલી,તા.માંડવી,જિ.સુરત";
+      document.getElementById('stdInput').value = savedProf.std || "બાલવાટિકા થી ૮";
+      document.getElementById('yearInput').value = savedProf.year || "2026-27";
+      document.getElementById('principalInput').value = savedProf.prin || "ગણેશભાઈ સી. ચૌધરી";
+      document.getElementById('placeInput').value = savedProf.place || "અંત્રોલી પ્રાથમિક શાળા";
+      document.getElementById('dateInput').value = savedProf.date || "";
+    }
+    updateProfileInfo();
+    applySignature();
+    setPart(1); 
+  };
+</script>
+</body>
+</html>
+
+
+
