@@ -195,12 +195,20 @@
       <input type="text" id="searchInput" placeholder="આધાર શોધો (નામ અથવા નંબર)..." onkeyup="filterBySearch()">
     </div>
     <ul class="evidence-list" id="evidenceUl"></ul>
+
   </div>
   <div class="main-content" id="mainContentArea">
     <div class="top-toolbar no-print">
-       <!-- હમ્બર્ગ મેનુ બટન -->
-      <button class="btn-action" style="font-size: 18px; padding: 4px 10px; margin-right: auto; background:#1e293b;" onclick="toggleSidebar()" title="મેનુ છુપાવો/બતાવો">☰</button>
-      
+      <div style="margin-right: auto; display: flex; gap: 8px; align-items: center;">
+         <!-- હમ્બર્ગ મેનુ બટન -->
+        <button class="btn-action" style="font-size: 18px; padding: 4px 10px; background:#1e293b;" onclick="toggleSidebar()" title="મેનુ છુપાવો/બતાવો">☰</button>
+        
+        <!-- બેકઅપ અને રિસ્ટોર બટન -->
+        <button class="btn-toolbar" style="background:#0ea5e9; padding: 6px 12px; font-size: 13px;" onclick="exportData()" title="ડાટા બેકઅપ">⬇️ બેકઅપ</button>
+        <input type="file" id="importFileInput" accept=".json" style="display:none;" onchange="importData(event)">
+        <button class="btn-toolbar" style="background:#f59e0b; padding: 6px 12px; font-size: 13px;" onclick="document.getElementById('importFileInput').click()" title="ડાટા રિસ્ટોર">⬆️ રિસ્ટોર</button>
+      </div>
+
       <span class="save-indicator" id="saveStatus">✓ ઓટો સેવ...</span>
       <button class="btn-toolbar btn-color-toggle" onclick="toggleColorMode()">🎨 રંગીન અક્ષરો કરો</button>
       
@@ -963,6 +971,76 @@ window.addCustomHeading = function(btn) {
     applySignature();
     setPart(1); 
   };
+
+  window.exportData = async function() {
+      try {
+          await DBSystem.init();
+          const backup = {
+              profile: localStorage.getItem('gunotsav_profile'),
+              fonts: localStorage.getItem('gunotsav_fonts'),
+              sigImg: localStorage.getItem('gunotsav_sig_img'),
+              sigSize: localStorage.getItem('gunotsav_sig_size'),
+              items: {}
+          };
+          
+          const tx = DBSystem.db.transaction("docs", "readonly");
+          const store = tx.objectStore("docs");
+          const request = store.openCursor();
+          
+          request.onsuccess = function(event) {
+              const cursor = event.target.result;
+              if (cursor) {
+                  backup.items[cursor.key] = cursor.value;
+                  cursor.continue();
+              } else {
+                  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backup));
+                  const dlAnchorElem = document.createElement('a');
+                  dlAnchorElem.setAttribute("href", dataStr);
+                  let d = new Date();
+                  let dateStr = d.getDate() + "-" + (d.getMonth()+1) + "-" + d.getFullYear();
+                  dlAnchorElem.setAttribute("download", "Gunotsav_Backup_" + dateStr + ".json");
+                  dlAnchorElem.click();
+              }
+          };
+      } catch(e) {
+          alert("બેકઅપ લેવામાં નિષ્ફળતા: " + e);
+      }
+  };
+
+  window.importData = function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+          try {
+              const backup = JSON.parse(e.target.result);
+              if (backup.profile) localStorage.setItem('gunotsav_profile', backup.profile);
+              if (backup.fonts) localStorage.setItem('gunotsav_fonts', backup.fonts);
+              if (backup.sigImg) localStorage.setItem('gunotsav_sig_img', backup.sigImg);
+              if (backup.sigSize) localStorage.setItem('gunotsav_sig_size', backup.sigSize);
+              
+              if (backup.items && Object.keys(backup.items).length > 0) {
+                  await DBSystem.init();
+                  const tx = DBSystem.db.transaction("docs", "readwrite");
+                  const store = tx.objectStore("docs");
+                  for (let key in backup.items) {
+                      store.put(backup.items[key], key);
+                  }
+                  tx.oncomplete = () => {
+                      alert("તમારો ડાટા સફળતાપૂર્વક પાછો આવી ગયો છે!");
+                      location.reload();
+                  };
+              } else {
+                  alert("તમારો ડાટા સફળતાપૂર્વક પાછો આવી ગયો છે!");
+                  location.reload();
+              }
+          } catch(err) {
+              alert("ફાઈલ ખોટી છે અથવા ડાટા રિસ્ટોર થઈ શક્યો નથી.");
+          }
+      };
+      reader.readAsText(file);
+  };
+
 </script>
 <!-- PWA Service Worker Registration -->
 <script>
