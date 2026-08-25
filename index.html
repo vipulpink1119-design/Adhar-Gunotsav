@@ -469,7 +469,6 @@
       document.body.style.fontFamily = font;
       localStorage.setItem('gunotsav_global_font', font);
   }
-  
   function createPhotoSlotHtml(slotKey, labelText, defaultText, isFullWidth) {
     return `
       <div class="photo-slot-card ${isFullWidth ? 'full-width' : ''}" id="card_${slotKey}">
@@ -486,7 +485,6 @@
         <button class="btn-slot-upload no-print" onclick="document.getElementById('inp_${slotKey}').click()">📷 ફોટો અપલોડ કરો</button>
       </div>`;
   }
-  
   // Point 2: Insert Heading and Input Box together
 window.addCustomHeading = function(btn) {
       const headingHTML = `
